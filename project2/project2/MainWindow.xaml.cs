@@ -20,6 +20,7 @@ namespace project2
     /// </summary>
     public partial class MainWindow : Window
     {
+        int partycounter = 0;
         public MainWindow()
         {
             InitializeComponent();
@@ -28,20 +29,32 @@ namespace project2
 
         private void partycreator()
         {
-            for (int row = 1; row < 6; row++) 
-            {
-                for (int col = 1; col < 4; col++) 
-                {
-                    ImageBrush imageBrush = new ImageBrush();
-                    imageBrush.ImageSource = new BitmapImage(new Uri("images/bluecircle.png", UriKind.Relative));
+             for (int row = 1; row < 6; row++)
+             {
+                 partycounter++;
+                 for (int col = 1; col < 4; col++)
+                 {
+                     ImageBrush imageBrush = new ImageBrush();
+                     imageBrush.ImageSource = new BitmapImage(new Uri("images/bluecircle.png", UriKind.Relative));
 
-                    Rectangle rectangle = new Rectangle();
-                    rectangle.Fill = imageBrush;
-                    Grid.SetRow(rectangle, row);
-                    Grid.SetColumn(rectangle, col);
-                    gridPartijen.Children.Add(rectangle); 
+                     Rectangle rectangle = new Rectangle();
+                     rectangle.Fill = imageBrush;
+                     rectangle.Margin = new Thickness(5);
+                     Grid.SetRow(rectangle, row);
+                     Grid.SetColumn(rectangle, col);
+                     gridPartijen.Children.Add(rectangle);
                 }
-            }
+              }
+
+            ImageBrush finalImageBrush = new ImageBrush();
+            finalImageBrush.ImageSource = new BitmapImage(new Uri("images/bluecircle.png", UriKind.Relative));
+
+            Rectangle finalRectangle = new Rectangle();
+            finalRectangle.Fill = finalImageBrush;
+            finalRectangle.Margin = new Thickness(5);
+            Grid.SetRow(finalRectangle, 6);
+            Grid.SetColumn(finalRectangle, 2);
+            gridPartijen.Children.Add(finalRectangle);
         }
     }
 }

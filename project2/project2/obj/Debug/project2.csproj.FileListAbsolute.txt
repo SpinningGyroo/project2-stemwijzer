@@ -32,3 +32,5 @@ C:\Users\mrluu\Documents\GitHub\project2-stemwijzer\project2\project2\obj\Debug\
 C:\Users\mrluu\Documents\GitHub\project2-stemwijzer\project2\project2\obj\Debug\project2.pdb
 C:\Users\mrluu\Documents\GitHub\project2-stemwijzer\project2\project2\bin\Debug\images\bluecircle.png
 C:\Users\mrluu\Documents\GitHub\project2-stemwijzer\project2\project2\obj\Debug\project2_Content.g.cs
+C:\Users\herec\Documents\GitHub\project2-stemwijzer\project2\project2\bin\Debug\images\bluecircle.png
+C:\Users\herec\Documents\GitHub\project2-stemwijzer\project2\project2\obj\Debug\project2_Content.g.cs
