@@ -1,0 +1,16 @@
+C:\Users\herec\Documents\GitHub\project2-stemwijzer\project2\project2\bin\Debug\project2.exe.config
+C:\Users\herec\Documents\GitHub\project2-stemwijzer\project2\project2\bin\Debug\project2.exe
+C:\Users\herec\Documents\GitHub\project2-stemwijzer\project2\project2\bin\Debug\project2.pdb
+C:\Users\herec\Documents\GitHub\project2-stemwijzer\project2\project2\obj\Debug\project2.csproj.AssemblyReference.cache
+C:\Users\herec\Documents\GitHub\project2-stemwijzer\project2\project2\obj\Debug\project2.csproj.SuggestedBindingRedirects.cache
+C:\Users\herec\Documents\GitHub\project2-stemwijzer\project2\project2\obj\Debug\MainWindow.g.cs
+C:\Users\herec\Documents\GitHub\project2-stemwijzer\project2\project2\obj\Debug\App.g.cs
+C:\Users\herec\Documents\GitHub\project2-stemwijzer\project2\project2\obj\Debug\project2_MarkupCompile.cache
+C:\Users\herec\Documents\GitHub\project2-stemwijzer\project2\project2\obj\Debug\project2_MarkupCompile.lref
+C:\Users\herec\Documents\GitHub\project2-stemwijzer\project2\project2\obj\Debug\MainWindow.baml
+C:\Users\herec\Documents\GitHub\project2-stemwijzer\project2\project2\obj\Debug\project2.g.resources
+C:\Users\herec\Documents\GitHub\project2-stemwijzer\project2\project2\obj\Debug\project2.Properties.Resources.resources
+C:\Users\herec\Documents\GitHub\project2-stemwijzer\project2\project2\obj\Debug\project2.csproj.GenerateResource.cache
+C:\Users\herec\Documents\GitHub\project2-stemwijzer\project2\project2\obj\Debug\project2.csproj.CoreCompileInputs.cache
+C:\Users\herec\Documents\GitHub\project2-stemwijzer\project2\project2\obj\Debug\project2.exe
+C:\Users\herec\Documents\GitHub\project2-stemwijzer\project2\project2\obj\Debug\project2.pdb
