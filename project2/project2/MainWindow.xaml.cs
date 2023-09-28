@@ -23,14 +23,25 @@ namespace project2
         public MainWindow()
         {
             InitializeComponent();
-            buttonBGHover();
+            partycreator();
         }
-        private void buttonBGHover()
+
+        private void partycreator()
         {
-            Brush myBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#0057FF"));
-            Style buttonStyle = new Style(typeof(Button));
-            buttonStyle.Setters.Add(new Setter(Control.BackgroundProperty, myBrush));
-            btnLogin.Style = buttonStyle;
+            for (int row = 1; row < 6; row++) 
+            {
+                for (int col = 1; col < 4; col++) 
+                {
+                    ImageBrush imageBrush = new ImageBrush();
+                    imageBrush.ImageSource = new BitmapImage(new Uri("assets/bluecircle.png", UriKind.Relative));
+
+                    Rectangle rectangle = new Rectangle();
+                    rectangle.Fill = imageBrush;
+                    Grid.SetRow(rectangle, row);
+                    Grid.SetColumn(rectangle, col);
+                    gridPartijen.Children.Add(rectangle); 
+                }
+            }
         }
     }
 }
