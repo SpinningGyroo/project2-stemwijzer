@@ -33,7 +33,7 @@ namespace project2
                 for (int col = 1; col < 4; col++) 
                 {
                     ImageBrush imageBrush = new ImageBrush();
-                    imageBrush.ImageSource = new BitmapImage(new Uri("assets/bluecircle.png", UriKind.Relative));
+                    imageBrush.ImageSource = new BitmapImage(new Uri("images/bluecircle.png", UriKind.Relative));
 
                     Rectangle rectangle = new Rectangle();
                     rectangle.Fill = imageBrush;
