@@ -23,6 +23,14 @@ namespace project2
         public MainWindow()
         {
             InitializeComponent();
+            buttonBGHover();
+        }
+        private void buttonBGHover()
+        {
+            Brush myBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#0057FF"));
+            Style buttonStyle = new Style(typeof(Button));
+            buttonStyle.Setters.Add(new Setter(Control.BackgroundProperty, myBrush));
+            btnLogin.Style = buttonStyle;
         }
     }
 }

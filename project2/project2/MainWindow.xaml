@@ -47,6 +47,12 @@
             <Viewbox Grid.Row="1" Grid.Column="1">
                 <TextBlock Foreground="White">username:</TextBlock>
             </Viewbox>
+            <Viewbox Grid.Row="2" Grid.Column="1">
+                <TextBlock Foreground="White">password:</TextBlock>
+            </Viewbox>
+            <Viewbox Stretch="Uniform" Grid.Row="3" Grid.Column="2">
+                <Button x:Name="btnLogin" Foreground="White" Background="#0057FF" BorderBrush="#0057FF">log in</Button>
+            </Viewbox>
         </Grid>
         <Grid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" Grid.RowSpan="4" Background="Red">
             
