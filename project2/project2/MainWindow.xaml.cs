@@ -39,7 +39,7 @@ namespace project2
 
                      Rectangle rectangle = new Rectangle();
                      rectangle.Fill = imageBrush;
-                     rectangle.Margin = new Thickness(5);
+                     rectangle.Margin = new Thickness(4);
                      Grid.SetRow(rectangle, row);
                      Grid.SetColumn(rectangle, col);
                      gridPartijen.Children.Add(rectangle);
@@ -51,7 +51,7 @@ namespace project2
 
             Rectangle finalRectangle = new Rectangle();
             finalRectangle.Fill = finalImageBrush;
-            finalRectangle.Margin = new Thickness(5);
+            finalRectangle.Margin = new Thickness(4);
             Grid.SetRow(finalRectangle, 6);
             Grid.SetColumn(finalRectangle, 2);
             gridPartijen.Children.Add(finalRectangle);

@@ -25,27 +25,29 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="0.2*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="1" Grid.RowSpan="3" Grid.Column="2" Grid.ColumnSpan="4" Background="Yellow">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="0.2*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="0.2*"/>
-            </Grid.RowDefinitions>
-            <Viewbox HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1">
-                <TextBlock>TITEL</TextBlock>
-            </Viewbox>
-            <Viewbox Stretch="Fill" Grid.Row="2" Grid.Column="1">
-                <Button Background="#0057FF" FontSize="15" BorderBrush="Black" Foreground="White">START</Button>
-            </Viewbox>
-        </Grid>
-        <Grid Grid.Row="4" Grid.RowSpan="2" Grid.Column="3" Grid.ColumnSpan="3" Background="#0057FF">
+        <Border Grid.Row="1" Grid.RowSpan="3" Grid.Column="2" Grid.ColumnSpan="4" Background="Yellow"  BorderBrush="Black" BorderThickness="1,1,1,1" CornerRadius="30,30,0,30">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.2*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="0.2*"/>
+                </Grid.RowDefinitions>
+                <Viewbox HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1">
+                    <TextBlock>TITEL</TextBlock>
+                </Viewbox>
+                <Viewbox Stretch="Fill" Grid.Row="2" Grid.Column="1">
+                    <Button Background="#0057FF" FontSize="15" BorderBrush="Black" Foreground="White">START</Button>
+                </Viewbox>
+            </Grid>
+            </Border>
+            <Grid Grid.Row="4" Grid.RowSpan="2" Grid.Column="3" Grid.ColumnSpan="3" Background="#0057FF">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.1*"/>
                 <ColumnDefinition Width="1*"/>
@@ -80,24 +82,26 @@
                 <Button FontSize="60" FontWeight="Bold" Foreground="White" Background="#0057FF" BorderBrush="#0057FF">sign up</Button>
             </Viewbox>
         </Grid>
-        <Grid Name="gridPartijen" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" Grid.RowSpan="4" Background="Red">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.3*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="0.3*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="0.2*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="0.2*"/>
-            </Grid.RowDefinitions>
-        </Grid>
+        <Border Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" Grid.RowSpan="4" Background="Red"  BorderBrush="Black" BorderThickness="1,1,1,1" CornerRadius="30,30,0,30">
+            <Grid Name="gridPartijen">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.7*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="0.7*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.2*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="0.2*"/>
+                </Grid.RowDefinitions>
+            </Grid>
+        </Border>
     </Grid>
 </Window>
