@@ -54,7 +54,8 @@
             </Grid>
         </Border>
 
-        <Grid Grid.Row="4" Grid.RowSpan="2" Grid.Column="3" Grid.ColumnSpan="3" Background="#0057FF">
+        <Border Grid.Row="4" Grid.RowSpan="2" Grid.Column="3" Grid.ColumnSpan="3" Background="#0057FF"  BorderBrush="Black" BorderThickness="1,1,1,1" CornerRadius="0,30,30,0">
+            <Grid >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.1*"/>
                 <ColumnDefinition Width="1*"/>
@@ -89,6 +90,7 @@
                 <Button FontSize="60" FontWeight="Bold" Foreground="White" Background="#0057FF" BorderBrush="#0057FF">sign up</Button>
             </Viewbox>
         </Grid>
+        </Border>
         <Border Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" Grid.RowSpan="4" Background="Red"  BorderBrush="Black" BorderThickness="1,1,1,1" CornerRadius="30,30,0,30">
             <Grid Name="gridPartijen">
                 <Grid.ColumnDefinitions>
