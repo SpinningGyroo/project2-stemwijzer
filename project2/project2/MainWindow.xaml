@@ -7,9 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Grid Background="Yellow" Grid.Column="5" Grid.Row="4">
-            
-        </Grid>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
@@ -28,7 +26,10 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="0.2*"/>
         </Grid.RowDefinitions>
-        <Border Grid.Row="1" Grid.RowSpan="3" Grid.Column="2" Grid.ColumnSpan="4" Background="Yellow"  BorderBrush="Black" BorderThickness="1,1,1,1" CornerRadius="30,30,0,30">
+        <Grid Background="Yellow" Grid.Column="5" Grid.Row="4">
+
+        </Grid>
+        <Border Grid.Row="1" Grid.RowSpan="3" Grid.Column="2" Grid.ColumnSpan="4" Background="Yellow" BorderBrush="Black" BorderThickness="1,1,1,1" CornerRadius="30,30,0,30">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
@@ -49,8 +50,9 @@
                     <Button Background="#0057FF" FontSize="15" BorderBrush="Black" Foreground="White">START</Button>
                 </Viewbox>
             </Grid>
-            </Border>
-            <Grid Grid.Row="4" Grid.RowSpan="2" Grid.Column="3" Grid.ColumnSpan="3" Background="#0057FF">
+        </Border>
+
+        <Grid Grid.Row="4" Grid.RowSpan="2" Grid.Column="3" Grid.ColumnSpan="3" Background="#0057FF">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.1*"/>
                 <ColumnDefinition Width="1*"/>
