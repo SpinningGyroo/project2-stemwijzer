@@ -26,10 +26,11 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="0.2*"/>
         </Grid.RowDefinitions>
-        <Button></Button>
-        <Grid Background="Yellow" Grid.Column="5" Grid.Row="4">
+        <Border Background="Yellow" Grid.Column="5" Grid.Row="4">
+        <Grid >
 
         </Grid>
+        </Border>
         <Border Grid.Row="1" Grid.RowSpan="3" Grid.Column="2" Grid.ColumnSpan="4" Background="Yellow" BorderBrush="Black" BorderThickness="1,1,1,1" CornerRadius="30,30,0,30">
             <Grid>
                 <Grid.ColumnDefinitions>
