@@ -22,6 +22,26 @@ namespace project2
         public History()
         {
             InitializeComponent();
+            partycreator();
+        }
+
+        private void partycreator()
+        {
+            for (int row = 1; row < 5; row++)
+            {
+                for (int col = 1; col < 5; col++)
+                {
+                    ImageBrush imageBrush = new ImageBrush();
+                    imageBrush.ImageSource = new BitmapImage(new Uri("images/bluecircle.png", UriKind.Relative));
+
+                    Rectangle rectangle = new Rectangle();
+                    rectangle.Fill = imageBrush;
+                    rectangle.Margin = new Thickness(4);
+                    Grid.SetRow(rectangle, row);
+                    Grid.SetColumn(rectangle, col);
+                    redGrid.Children.Add(rectangle);
+                }
+            }
         }
     }
 }
