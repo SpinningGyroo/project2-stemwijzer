@@ -92,6 +92,7 @@ namespace project2
             ProfileImage.ImageSource = new BitmapImage(new Uri("images/uta.jpg", UriKind.Relative));
 
             Rectangle ProfileRectangle = new Rectangle();
+            ProfileRectangle.Margin = new Thickness(4);
             ProfileRectangle.Fill = ProfileImage;
             Grid.SetRow(ProfileRectangle, 1);
             Grid.SetColumn(ProfileRectangle, 1);
@@ -110,21 +111,7 @@ namespace project2
             Grid.SetColumnSpan(CanvasRectangle, 2);
             Grid.SetRowSpan(CanvasRectangle, 4);
 
-            Border CanvasBorder = new Border();
-            SolidColorBrush brush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#0057FF"));
-            CanvasBorder.BorderBrush = brush;
-            CanvasBorder.BorderThickness = new Thickness(12);
-            Grid.SetRow(CanvasBorder, 0);
-            Grid.SetColumn(CanvasBorder, 0);
-            Grid.SetColumnSpan(CanvasBorder, 3);
-            Grid.SetRowSpan(CanvasBorder, 5);
-
-
-
-
             gridLoggedIn.Children.Add(CanvasRectangle);
-            gridLoggedIn.Children.Add(CanvasBorder);
-
         }
     }
 }
