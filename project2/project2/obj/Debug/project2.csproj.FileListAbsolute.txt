@@ -58,3 +58,6 @@ C:\Users\mrluu\Documents\GitHub\project2-stemwijzer\project2\project2\obj\Debug\
 C:\Users\mrluu\Documents\GitHub\project2-stemwijzer\project2\project2\obj\Debug\Keuze.baml
 C:\Users\mrluu\Documents\GitHub\project2-stemwijzer\project2\project2\obj\Debug\Result.baml
 C:\Users\mrluu\Documents\GitHub\project2-stemwijzer\project2\project2\obj\Debug\ToFastTimer.baml
+C:\Users\mrluu\Documents\GitHub\project2-stemwijzer\project2\project2\bin\Debug\images\profileimage.png
+C:\Users\mrluu\Documents\GitHub\project2-stemwijzer\project2\project2\bin\Debug\images\profileimage-canvas.png
+C:\Users\mrluu\Documents\GitHub\project2-stemwijzer\project2\project2\bin\Debug\images\uta.jpg

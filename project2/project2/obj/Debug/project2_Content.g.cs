@@ -9,5 +9,8 @@
 //------------------------------------------------------------------------------
 
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/bluecircle.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/profileimage-canvas.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/profileimage.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/uta.jpg")]
 
 
