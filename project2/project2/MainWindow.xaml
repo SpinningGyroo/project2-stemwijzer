@@ -56,7 +56,58 @@
 
 
 
+        <Border 
+            x:Name="LoggedIn"
+            
+            Grid.Row="4" 
+            Grid.RowSpan="2" 
+            Grid.Column="3" 
+            Grid.ColumnSpan="3" 
+            Background="#0057FF"  
+            BorderBrush="Black" 
+            BorderThickness="1,1,1,1" 
+            CornerRadius="0,30,30,0">
+            <Grid 
+                x:Name="gridLoggedIn"
+                >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="0.1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.2*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
 
+                    <RowDefinition Height="0.2*"/>
+                </Grid.RowDefinitions>
+
+                <Viewbox
+                    Grid.Row="2"
+                    Grid.Column="3"
+                    Grid.ColumnSpan="2"
+                    >
+                    <Button
+                     Foreground="White" 
+                     Background="#0057FF" 
+                     BorderBrush="#0057FF"
+                     FontSize="20"
+                     HorizontalAlignment="Left"
+                     Click="HistoryClick"
+                    >
+                        History
+                    </Button>
+                </Viewbox>
+
+
+            </Grid>
+        </Border>
 
 
 
@@ -118,7 +169,7 @@
                 </Viewbox>
 
                 <Viewbox HorizontalAlignment="Right" Stretch="Fill" Grid.Row="4" Grid.Column="1">
-                    <Button x:Name="btnGoBack" Foreground="White" Background="#0057FF" BorderBrush="#0057FF" FontSize="50">←</Button>
+                    <Button x:Name="btnGoBack" Click="GoBackClick" Foreground="White" Background="#0057FF" BorderBrush="#0057FF" FontSize="50">←</Button>
                 </Viewbox>
             </Grid>
         </Border>
@@ -158,10 +209,10 @@
                     <RowDefinition Height="0.2*"/>
                 </Grid.RowDefinitions>
 
-                <Viewbox Grid.Row="1" Grid.Column="1">
+                <Viewbox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left">
                     <TextBlock Foreground="White">username:</TextBlock>
                 </Viewbox>
-                <Viewbox Grid.Row="2" Grid.Column="1">
+                <Viewbox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left">
                     <TextBlock Foreground="White">password:</TextBlock>
                 </Viewbox>
                 <Viewbox HorizontalAlignment="Right" Stretch="Uniform" Grid.Row="3" Grid.Column="2">
@@ -183,58 +234,7 @@
 
 
 
-        <Border 
-            x:Name="LoggedIn"
-            
-            Grid.Row="4" 
-            Grid.RowSpan="2" 
-            Grid.Column="3" 
-            Grid.ColumnSpan="3" 
-            Background="#0057FF"  
-            BorderBrush="Black" 
-            BorderThickness="1,1,1,1" 
-            CornerRadius="0,30,30,0">
-            <Grid 
-                x:Name="gridLoggedIn"
-                >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.1*"/>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="0.1*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="0.2*"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
 
-                    <RowDefinition Height="0.2*"/>
-                </Grid.RowDefinitions>
-
-                <Viewbox
-                    Grid.Row="2"
-                    Grid.Column="3"
-                    Grid.ColumnSpan="2"
-                    >
-                    <Button
-                     Foreground="White" 
-                     Background="#0057FF" 
-                     BorderBrush="#0057FF"
-                     FontSize="20"
-                     HorizontalAlignment="Left"
-                     Click="HistoryClick"
-                    >
-                        History
-                    </Button>
-                </Viewbox>
-
-
-            </Grid>
-        </Border>
 
 
 

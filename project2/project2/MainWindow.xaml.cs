@@ -25,8 +25,6 @@ namespace project2
         {
             InitializeComponent();
             partycreator();
-            btnCreateUser.Visibility = Visibility.Hidden;
-            btnCreateUser.IsEnabled = false;
             LoggedIn.Visibility = Visibility.Hidden;
             SignUp.Visibility = Visibility.Hidden;
         }
@@ -69,18 +67,14 @@ namespace project2
 
         private void signupClick(object sender, RoutedEventArgs e)
         {
-            btnLogin.Visibility = Visibility.Hidden;
-            btnLogin.IsEnabled = false;
-            btnSignup.Visibility = Visibility.Hidden;
-            btnSignup.IsEnabled = false;
-
-            btnCreateUser.Visibility = Visibility.Visible;
-            btnCreateUser.IsEnabled = true;
+            MainWindowBorder.Visibility = Visibility.Hidden;
+            SignUp.Visibility = Visibility.Visible;
         }
 
         private void createuserClick(object sender, RoutedEventArgs e)
         {
-
+            SignUp.Visibility = Visibility.Hidden;
+            MainWindowBorder.Visibility = Visibility.Visible;
         }
 
         private void loginClick(object sender, RoutedEventArgs e)
@@ -112,6 +106,12 @@ namespace project2
             Grid.SetRowSpan(CanvasRectangle, 4);
 
             gridLoggedIn.Children.Add(CanvasRectangle);
+        }
+
+        private void GoBackClick(object sender, RoutedEventArgs e)
+        {
+            SignUp.Visibility = Visibility.Hidden;
+            MainWindowBorder.Visibility = Visibility.Visible;
         }
     }
 }
