@@ -26,7 +26,6 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="0.2*"/>
         </Grid.RowDefinitions>
-        <Button x:Name="temp" Grid.Row="1" Click="temp_Click">TEMP</Button>
         <Border Background="Yellow" Grid.Column="5" Grid.Row="4" BorderBrush="Black" BorderThickness="1,0,1,1">
         <Grid >
 
@@ -227,6 +226,7 @@
                      BorderBrush="#0057FF"
                      FontSize="20"
                      HorizontalAlignment="Left"
+                     Click="HistoryClick"
                     >
                         History
                     </Button>

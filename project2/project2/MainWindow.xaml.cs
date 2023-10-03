@@ -61,7 +61,7 @@ namespace project2
             gridPartijen.Children.Add(finalRectangle);
         }
 
-        private void temp_Click(object sender, RoutedEventArgs e)
+        private void HistoryClick(object sender, RoutedEventArgs e)
         {
             History screen = new History();
             screen.Show();
