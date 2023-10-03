@@ -25,6 +25,8 @@ namespace project2
         {
             InitializeComponent();
             partycreator();
+            btnCreateUser.Visibility = Visibility.Hidden;
+            btnCreateUser.IsEnabled = false;
         }
 
         private void partycreator()
@@ -61,6 +63,22 @@ namespace project2
         {
             History screen = new History();
             screen.Show();
+        }
+
+        private void signupClick(object sender, RoutedEventArgs e)
+        {
+            btnLogin.Visibility = Visibility.Hidden;
+            btnLogin.IsEnabled = false;
+            btnSignup.Visibility = Visibility.Hidden;
+            btnSignup.IsEnabled = false;
+
+            btnCreateUser.Visibility = Visibility.Visible;
+            btnCreateUser.IsEnabled = true;
+        }
+
+        private void createuserClick(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

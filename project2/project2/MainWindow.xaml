@@ -88,9 +88,12 @@
                 <PasswordBox Name="txtPassword" FontSize="8" Width="80" BorderBrush="#0057FF"></PasswordBox>
             </Viewbox>
             <Viewbox Stretch="Uniform" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2">
-                <Button FontSize="60" FontWeight="Bold" Foreground="White" Background="#0057FF" BorderBrush="#0057FF">sign up</Button>
+                <Button x:Name="btnSignup" FontSize="60" FontWeight="Bold" Foreground="White" Background="#0057FF" BorderBrush="#0057FF" Click="signupClick">sign up</Button>
             </Viewbox>
-        </Grid>
+            <Viewbox Stretch="Uniform" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2">
+                    <Button Name="btnCreateUser" FontSize="60" FontWeight="Bold" Foreground="White" Background="#0057FF" BorderBrush="#0057FF" Click="createuserClick">create user</Button>
+            </Viewbox>
+            </Grid>
         </Border>
         <Border Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" Grid.RowSpan="4" Background="Red"  BorderBrush="Black" BorderThickness="1,1,1,1" CornerRadius="30,30,0,30">
             <Grid Name="gridPartijen">
