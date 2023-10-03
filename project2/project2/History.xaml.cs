@@ -27,9 +27,9 @@ namespace project2
 
         private void partycreator()
         {
-            for (int row = 1; row < 5; row++)
+            for (int row = 2; row < 10; row =+ 2)
             {
-                for (int col = 1; col < 5; col++)
+                for (int col = 2; col < 10; col += 2)
                 {
                     ImageBrush imageBrush = new ImageBrush();
                     imageBrush.ImageSource = new BitmapImage(new Uri("images/bluecircle.png", UriKind.Relative));

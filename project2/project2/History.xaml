@@ -20,23 +20,32 @@
 
         <Grid x:Name="redGrid" Grid.Row="1" Grid.Column="1" Background="Red">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="20px"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="20px"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="2*"/>
+
+
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="20px"/>
                 <RowDefinition Height="1*"/>
+                <RowDefinition Height="2.5*"/>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition Height="2.5*"/>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition Height="2.5*"/>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition Height="2.5*"/>
                 <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="20px"/>
             </Grid.RowDefinitions>
-            <Viewbox Stretch="Uniform" Grid.Row="5" Grid.Column="4">
+            <Viewbox Stretch="Uniform" Grid.Row="8" Grid.Column="10">
                 <Button Background="Red" BorderBrush="Red" Foreground="White">main menu</Button>
             </Viewbox>
 
