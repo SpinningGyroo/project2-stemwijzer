@@ -146,6 +146,9 @@
     <Content Include="images\profileimage.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="images\redcircle.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="images\uta.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -36,11 +36,37 @@ namespace project2
 
                     Rectangle rectangle = new Rectangle();
                     rectangle.Fill = imageBrush;
+                    rectangle.MouseDown += historySubShow;
                     rectangle.Margin = new Thickness(4);
                     Grid.SetRow(rectangle, row);
                     Grid.SetColumn(rectangle, col);
                     redGrid.Children.Add(rectangle);
                 }
+
+
+            }
+            ImageBrush imageBrushh = new ImageBrush();
+            imageBrushh.ImageSource = new BitmapImage(new Uri("images/redcircle.png", UriKind.Relative));
+
+            Rectangle rectanglee = new Rectangle();
+            rectanglee.Fill = imageBrushh;
+            rectanglee.MouseDown += historySubShow;
+            Grid.SetRow(rectanglee, 0);
+            Grid.SetColumn(rectanglee, 4);
+            historySub.Children.Add(rectanglee);
+            historySub.Visibility = Visibility.Hidden;
+        }
+
+        private void historySubShow(object sender, MouseButtonEventArgs e)
+        {
+            if (historySub.Visibility == Visibility.Visible)
+            {
+                historySub.Visibility = Visibility.Hidden;
+            }
+
+            else
+            {
+                historySub.Visibility = Visibility.Visible;
             }
         }
     }
