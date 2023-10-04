@@ -140,6 +140,9 @@
     <Content Include="images\bluecircle.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="images\cross.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="images\profileimage-canvas.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

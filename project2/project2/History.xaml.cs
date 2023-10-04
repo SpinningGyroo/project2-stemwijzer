@@ -46,7 +46,7 @@ namespace project2
 
             }
             ImageBrush imageBrushh = new ImageBrush();
-            imageBrushh.ImageSource = new BitmapImage(new Uri("images/redcircle.png", UriKind.Relative));
+            imageBrushh.ImageSource = new BitmapImage(new Uri("images/cross.png", UriKind.Relative));
 
             Rectangle rectanglee = new Rectangle();
             rectanglee.Fill = imageBrushh;
