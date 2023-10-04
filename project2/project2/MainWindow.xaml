@@ -105,6 +105,23 @@
                     </Button>
                 </Viewbox>
 
+                <Viewbox
+                    Grid.Row="4"
+                    Grid.Column="4"
+                    Grid.ColumnSpan="2"
+                    >
+                    <Button
+                     Foreground="White" 
+                     Background="#0057FF" 
+                     BorderBrush="#0057FF"
+                     FontSize="8"
+                     HorizontalAlignment="Right"
+                     Click="logoutClick"
+                    >
+                        Log out
+                    </Button>
+                </Viewbox>
+
 
             </Grid>
         </Border>

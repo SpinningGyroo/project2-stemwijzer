@@ -113,5 +113,11 @@ namespace project2
             SignUp.Visibility = Visibility.Hidden;
             MainWindowBorder.Visibility = Visibility.Visible;
         }
+
+        private void logoutClick(object sender, RoutedEventArgs e)
+        {
+            LoggedIn.Visibility = Visibility.Hidden;
+            MainWindowBorder.Visibility = Visibility.Visible;
+        }
     }
 }
