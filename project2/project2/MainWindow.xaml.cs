@@ -67,6 +67,9 @@ namespace project2
 
         private void signupClick(object sender, RoutedEventArgs e)
         {
+            
+
+
             MainWindowBorder.Visibility = Visibility.Hidden;
             SignUp.Visibility = Visibility.Visible;
         }

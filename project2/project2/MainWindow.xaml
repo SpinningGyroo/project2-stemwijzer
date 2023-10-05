@@ -242,7 +242,7 @@
                     <PasswordBox Name="txtPassword" FontSize="8" Width="80" BorderBrush="#0057FF"></PasswordBox>
                 </Viewbox>
                 <Viewbox Stretch="Uniform" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2">
-                    <Button x:Name="btnSignup" FontSize="60" FontWeight="Bold" Foreground="White" Background="#0057FF" BorderBrush="#0057FF" Click="signupClick">sign up</Button>
+                    <Button x:Name="btnSignup" FontSize="60" FontWeight="Bold" Foreground="White" Background="#0057FF" BorderBrush="#0057FF" Click="signupClick" Content="Register"/>
                 </Viewbox>
 
 
