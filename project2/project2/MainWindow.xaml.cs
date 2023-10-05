@@ -122,5 +122,11 @@ namespace project2
             LoggedIn.Visibility = Visibility.Hidden;
             MainWindowBorder.Visibility = Visibility.Visible;
         }
+
+        private void startClick(object sender, RoutedEventArgs e)
+        {
+            Keuze screen = new Keuze();
+            screen.Show();
+        }
     }
 }

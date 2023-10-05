@@ -162,6 +162,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="images\arrowback.png" />
     <Content Include="images\bluecircle.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

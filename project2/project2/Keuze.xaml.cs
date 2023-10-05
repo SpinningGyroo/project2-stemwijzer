@@ -23,5 +23,10 @@ namespace project2
         {
             InitializeComponent();
         }
+
+        private void backAction(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }
