@@ -56,6 +56,135 @@
 
 
 
+
+
+
+
+
+        <Border 
+            x:Name="SignUp"
+            
+            Grid.Row="4" 
+            Grid.RowSpan="2" 
+            Grid.Column="3" 
+            Grid.ColumnSpan="3" 
+            Background="#0057FF"  
+            BorderBrush="Black" 
+            BorderThickness="1,1,1,1" 
+            CornerRadius="0,30,30,0">
+            <Grid 
+                x:Name="gridSignUp"
+                >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="0.1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.2*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+
+                    <RowDefinition Height="0.2*"/>
+                </Grid.RowDefinitions>
+
+                <Viewbox Stretch="Uniform" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="4">
+                    <Button x:Name="btnCreateUser" FontSize="60" FontWeight="Bold" Foreground="White" Background="#0057FF" BorderBrush="#0057FF" Click="btnCreateUser_Click">create user</Button>
+                </Viewbox>
+                <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left">
+                    <TextBlock Foreground="White">username:</TextBlock>
+                </Viewbox>
+                <Viewbox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left">
+                    <TextBlock Foreground="White">password:</TextBlock>
+                </Viewbox>
+                <Viewbox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+                    <TextBlock Foreground="White">E-mail:</TextBlock>
+                </Viewbox>
+
+                <Viewbox Stretch="Fill" Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="2">
+                    <PasswordBox x:Name="txtPasswordCreate" FontSize="8" Width="80" BorderBrush="#0057FF"></PasswordBox>
+                </Viewbox>
+
+                <Viewbox Stretch="Fill" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2">
+                    <TextBox x:Name="txtUsernameCreate" Width="80" FontSize="8" BorderBrush="#0057FF"></TextBox>
+                </Viewbox>
+                <Viewbox Stretch="Fill" Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="2">
+                    <TextBox x:Name="txtEmailCreate" Width="80" FontSize="8" BorderBrush="#0057FF"></TextBox>
+                </Viewbox>
+
+                <Viewbox HorizontalAlignment="Right" Stretch="Fill" Grid.Row="4" Grid.Column="1">
+                    <Button x:Name="btnGoBack" Click="GoBackClick" Foreground="White" Background="#0057FF" BorderBrush="#0057FF" FontSize="50">←</Button>
+                </Viewbox>
+
+            </Grid>
+        </Border>
+
+
+
+
+
+
+
+        <Border
+            x:Name="MainWindowBorder"
+            Grid.Row="4" 
+            Grid.RowSpan="2" 
+            Grid.Column="3" 
+            Grid.ColumnSpan="3" 
+            Background="#0057FF"  
+            BorderBrush="Black" 
+            BorderThickness="1,1,1,1" 
+            CornerRadius="0,30,30,0">
+
+            <Grid 
+                x:Name="gridMainWindow"
+                >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="0.1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.2*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="0.2*"/>
+                </Grid.RowDefinitions>
+
+                <Viewbox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left">
+                    <TextBlock Foreground="White">username:</TextBlock>
+                </Viewbox>
+                <Viewbox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left">
+                    <TextBlock Foreground="White">password:</TextBlock>
+                </Viewbox>
+                <Viewbox HorizontalAlignment="Right" Stretch="Uniform" Grid.Row="3" Grid.Column="2">
+                    <Button x:Name="btnLogin" Click="btnLogin_Click" Foreground="White" Background="#0057FF" BorderBrush="#0057FF">log in</Button>
+                </Viewbox>
+                <Viewbox Stretch="Fill" Grid.Row="1" Grid.Column="2">
+                    <TextBox x:Name="txtUsername" Width="80" FontSize="8" BorderBrush="#0057FF"></TextBox>
+                </Viewbox>
+                <Viewbox Stretch="Fill" Grid.Row="2" Grid.Column="2">
+                    <PasswordBox x:Name="txtPassword" FontSize="8" Width="80" BorderBrush="#0057FF"></PasswordBox>
+                </Viewbox>
+                <Viewbox Stretch="Uniform" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2">
+                    <Button x:Name="btnSignup" FontSize="60" FontWeight="Bold" Foreground="White" Background="#0057FF" BorderBrush="#0057FF" Click="signupClick" Content="Register"/>
+                </Viewbox>
+
+
+            </Grid>
+        </Border>
+
+
+
+
         <Border 
             x:Name="LoggedIn"
             
@@ -122,137 +251,26 @@
                     </Button>
                 </Viewbox>
 
+                <Viewbox
+                    Grid.Row="1"
+                    Grid.Column="3"
+                    Grid.ColumnSpan="1"
+                    >
+                    <Button
+                     x:Name="btnUploadImage"
+                     Foreground="White" 
+                     Background="#0057FF" 
+                     BorderBrush="#0057FF"
+                     FontSize="8"
+                     HorizontalAlignment="Right"
+                     Click="btnUploadImage_Click"
+                    >
+                        ✎
+                    </Button>
+                </Viewbox>
 
             </Grid>
         </Border>
-
-
-
-
-        <Border 
-            x:Name="SignUp"
-            
-            Grid.Row="4" 
-            Grid.RowSpan="2" 
-            Grid.Column="3" 
-            Grid.ColumnSpan="3" 
-            Background="#0057FF"  
-            BorderBrush="Black" 
-            BorderThickness="1,1,1,1" 
-            CornerRadius="0,30,30,0">
-            <Grid 
-                x:Name="gridSignUp"
-                >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.1*"/>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="0.1*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="0.2*"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-
-                    <RowDefinition Height="0.2*"/>
-                </Grid.RowDefinitions>
-
-                <Viewbox Stretch="Uniform" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="4">
-                    <Button x:Name="btnCreateUser" FontSize="60" FontWeight="Bold" Foreground="White" Background="#0057FF" BorderBrush="#0057FF" Click="btnCreateUser_Click">create user</Button>
-                </Viewbox>
-                <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left">
-                    <TextBlock Foreground="White">username:</TextBlock>
-                </Viewbox>
-                <Viewbox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left">
-                    <TextBlock Foreground="White">password:</TextBlock>
-                </Viewbox>
-                <Viewbox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center">
-                    <TextBlock Foreground="White">E-mail:</TextBlock>
-                </Viewbox>
-
-                <Viewbox Stretch="Fill" Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="2">
-                    <PasswordBox x:Name="txtPasswordCreate" FontSize="8" Width="80" BorderBrush="#0057FF"></PasswordBox>
-                </Viewbox>
-
-                <Viewbox Stretch="Fill" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2">
-                    <TextBox x:Name="txtUsernameCreate" Width="80" FontSize="8" BorderBrush="#0057FF"></TextBox>
-                </Viewbox>
-                <Viewbox Stretch="Fill" Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="2">
-                    <TextBox x:Name="txtEmailCreate" Width="80" FontSize="8" BorderBrush="#0057FF"></TextBox>
-                </Viewbox>
-
-                <Viewbox HorizontalAlignment="Right" Stretch="Fill" Grid.Row="4" Grid.Column="1">
-                    <Button x:Name="btnGoBack" Click="GoBackClick" Foreground="White" Background="#0057FF" BorderBrush="#0057FF" FontSize="50">←</Button>
-                </Viewbox>
-            </Grid>
-        </Border>
-
-
-
-
-
-
-
-        <Border
-            x:Name="MainWindowBorder"
-            Grid.Row="4" 
-            Grid.RowSpan="2" 
-            Grid.Column="3" 
-            Grid.ColumnSpan="3" 
-            Background="#0057FF"  
-            BorderBrush="Black" 
-            BorderThickness="1,1,1,1" 
-            CornerRadius="0,30,30,0">
-
-            <Grid 
-                x:Name="gridMainWindow"
-                >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.1*"/>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="0.1*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="0.2*"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="0.2*"/>
-                </Grid.RowDefinitions>
-
-                <Viewbox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left">
-                    <TextBlock Foreground="White">username:</TextBlock>
-                </Viewbox>
-                <Viewbox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left">
-                    <TextBlock Foreground="White">password:</TextBlock>
-                </Viewbox>
-                <Viewbox HorizontalAlignment="Right" Stretch="Uniform" Grid.Row="3" Grid.Column="2">
-                    <Button x:Name="btnLogin" Click="btnLogin_Click" Foreground="White" Background="#0057FF" BorderBrush="#0057FF">log in</Button>
-                </Viewbox>
-                <Viewbox Stretch="Fill" Grid.Row="1" Grid.Column="2">
-                    <TextBox x:Name="txtUsername" Width="80" FontSize="8" BorderBrush="#0057FF"></TextBox>
-                </Viewbox>
-                <Viewbox Stretch="Fill" Grid.Row="2" Grid.Column="2">
-                    <PasswordBox x:Name="txtPassword" FontSize="8" Width="80" BorderBrush="#0057FF"></PasswordBox>
-                </Viewbox>
-                <Viewbox Stretch="Uniform" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2">
-                    <Button x:Name="btnSignup" FontSize="60" FontWeight="Bold" Foreground="White" Background="#0057FF" BorderBrush="#0057FF" Click="signupClick" Content="Register"/>
-                </Viewbox>
-
-
-            </Grid>
-        </Border>
-
-
-
-
-
 
 
 

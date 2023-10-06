@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using MySql.Data.MySqlClient;
+using System.IO;
 
 namespace project2.classes
 {
@@ -12,20 +13,63 @@ namespace project2.classes
     {
         MySqlConnection _connection = new MySqlConnection("Server=localhost;Database=dbstellingen;UID=root;Pwd=;");
 
-        public void RegisterUser(string username, string password, string email)
+        public void RegisterUser(string username, string password, string email, byte[] profileImage = null)
+
         {
             try
             {
                 _connection.Open();
-                MySqlCommand command = new MySqlCommand("INSERT INTO user (username, password, email) VALUES (@username, @password, @email)", _connection);
+                MySqlCommand command = new MySqlCommand("INSERT INTO user (username, password, email, profile_image) VALUES (@username, @password, @email, @profileImage)", _connection);
                 command.Parameters.AddWithValue("@username", username);
                 command.Parameters.AddWithValue("@password", password);
                 command.Parameters.AddWithValue("@email", email);
+                command.Parameters.AddWithValue("@profileImage", profileImage);
                 command.ExecuteNonQuery();
             }
             catch (Exception e)
             {
                 Console.WriteLine("An error occurred: " + e.Message);
+            }
+            finally
+            {
+                _connection.Close();
+            }
+        }
+
+        public void UpdateProfileImage(string username, byte[] profileImage)
+        {
+            try
+            {
+                _connection.Open();
+                MySqlCommand command = new MySqlCommand("UPDATE user SET profile_image = @profileImage WHERE username = @username", _connection);
+                command.Parameters.AddWithValue("@profileImage", profileImage);
+                command.Parameters.AddWithValue("@username", username);
+                command.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("An error occurred: " + e.Message);
+            }
+            finally
+            {
+                _connection.Close();
+            }
+        }
+
+        public byte[] GetProfileImage(string username)
+        {
+            try
+            {
+                _connection.Open();
+                MySqlCommand command = new MySqlCommand("SELECT profile_image FROM user WHERE username = @username", _connection);
+                command.Parameters.AddWithValue("@username", username);
+                byte[] profileImage = (byte[])command.ExecuteScalar();
+                return profileImage;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("An error occurred: " + e.Message);
+                return null;
             }
             finally
             {

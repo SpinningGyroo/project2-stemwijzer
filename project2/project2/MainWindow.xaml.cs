@@ -16,6 +16,8 @@ using MySql.Data.MySqlClient;
 using System.Configuration;
 using project2.classes;
 using System.Data;
+using Microsoft.Win32;
+using System.IO;
 
 namespace project2
 {
@@ -24,6 +26,8 @@ namespace project2
     /// </summary>
     public partial class MainWindow : Window
     {
+        private string loggedInUsername;
+        Rectangle ProfileRectangle;
         int partycounter = 0;
         public MainWindow()
         {
@@ -31,27 +35,40 @@ namespace project2
             partycreator();
             LoggedIn.Visibility = Visibility.Hidden;
             SignUp.Visibility = Visibility.Hidden;
+
+            ImageBrush ProfileImage = new ImageBrush();
+            ProfileImage.ImageSource = new BitmapImage(new Uri("images/profileimage.png", UriKind.Relative));
+
+            ProfileRectangle = new Rectangle();
+            ProfileRectangle.Margin = new Thickness(4);
+            ProfileRectangle.Fill = ProfileImage; // Make sure ProfileImage is defined in your code
+            Grid.SetRow(ProfileRectangle, 1);
+            Grid.SetColumn(ProfileRectangle, 1);
+            Grid.SetColumnSpan(ProfileRectangle, 2);
+            Grid.SetRowSpan(ProfileRectangle, 4);
+
+            gridLoggedIn.Children.Add(ProfileRectangle);
         }
 
 
         private void partycreator()
         {
-             for (int row = 1; row < 6; row++)
-             {
-                 partycounter++;
-                 for (int col = 1; col < 4; col++)
-                 {
-                     ImageBrush imageBrush = new ImageBrush();
-                     imageBrush.ImageSource = new BitmapImage(new Uri("images/bluecircle.png", UriKind.Relative));
+            for (int row = 1; row < 6; row++)
+            {
+                partycounter++;
+                for (int col = 1; col < 4; col++)
+                {
+                    ImageBrush imageBrush = new ImageBrush();
+                    imageBrush.ImageSource = new BitmapImage(new Uri("images/bluecircle.png", UriKind.Relative));
 
-                     Rectangle rectangle = new Rectangle();
-                     rectangle.Fill = imageBrush;
-                     rectangle.Margin = new Thickness(4);
-                     Grid.SetRow(rectangle, row);
-                     Grid.SetColumn(rectangle, col);
-                     gridPartijen.Children.Add(rectangle);
+                    Rectangle rectangle = new Rectangle();
+                    rectangle.Fill = imageBrush;
+                    rectangle.Margin = new Thickness(4);
+                    Grid.SetRow(rectangle, row);
+                    Grid.SetColumn(rectangle, col);
+                    gridPartijen.Children.Add(rectangle);
                 }
-              }
+            }
 
             ImageBrush finalImageBrush = new ImageBrush();
             finalImageBrush.ImageSource = new BitmapImage(new Uri("images/bluecircle.png", UriKind.Relative));
@@ -122,6 +139,7 @@ namespace project2
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
+
             string username = txtUsername.Text;
             string password = txtPassword.Password.ToString();
 
@@ -152,7 +170,7 @@ namespace project2
             // Successfully logged in. You can add your code for what happens after login here.
             // For example, navigate to the main window or show some user-specific content.
             System.Windows.MessageBox.Show("Login successful!");
-
+            loggedInUsername = username;
             // Clear the textboxes
             txtUsername.Text = "";
             txtPassword.Password = "";
@@ -160,18 +178,7 @@ namespace project2
             MainWindowBorder.Visibility = Visibility.Hidden;
             LoggedIn.Visibility = Visibility.Visible;
 
-            ImageBrush ProfileImage = new ImageBrush();
-            ProfileImage.ImageSource = new BitmapImage(new Uri("images/profileimage.png", UriKind.Relative));
 
-            Rectangle ProfileRectangle = new Rectangle();
-            ProfileRectangle.Margin = new Thickness(4);
-            ProfileRectangle.Fill = ProfileImage;
-            Grid.SetRow(ProfileRectangle, 1);
-            Grid.SetColumn(ProfileRectangle, 1);
-            Grid.SetColumnSpan(ProfileRectangle, 2);
-            Grid.SetRowSpan(ProfileRectangle, 4);
-
-            gridLoggedIn.Children.Add(ProfileRectangle);
 
             ImageBrush ProfileCanvas = new ImageBrush();
             ProfileCanvas.ImageSource = new BitmapImage(new Uri("images/profileimage-canvas.png", UriKind.Relative));
@@ -184,6 +191,8 @@ namespace project2
             Grid.SetRowSpan(CanvasRectangle, 4);
 
             gridLoggedIn.Children.Add(CanvasRectangle);
+
+
         }
 
         private void GoBackClick(object sender, RoutedEventArgs e)
@@ -203,5 +212,28 @@ namespace project2
             Keuze screen = new Keuze();
             screen.Show();
         }
+        private void btnUploadImage_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image files |*.jpg;*.jpeg;*.png;*.gif;*.bmp";
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                string imagePath = openFileDialog.FileName;
+
+                // Convert the image to a byte array
+                byte[] imageData = File.ReadAllBytes(imagePath);
+
+                // Update the profile image in the database
+                DatabaseHandler dbHandler = new DatabaseHandler();
+                dbHandler.UpdateProfileImage(loggedInUsername, imageData);
+
+                // Optionally, update the profile image in the UI
+                ImageBrush newProfileImage = new ImageBrush();
+                newProfileImage.ImageSource = new BitmapImage(new Uri(imagePath));
+                ProfileRectangle.Fill = newProfileImage;
+            }
+        }
+
     }
 }
