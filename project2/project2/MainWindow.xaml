@@ -49,7 +49,7 @@
                     <TextBlock>TITEL</TextBlock>
                 </Viewbox>
                 <Viewbox Stretch="Fill" Grid.Row="2" Grid.Column="1">
-                    <Button Background="#0057FF" FontSize="15" BorderBrush="Black" Foreground="White">START</Button>
+                    <Button Background="#0057FF" FontSize="15" BorderBrush="Black" Foreground="White" Click="startClick">START</Button>
                 </Viewbox>
             </Grid>
         </Border>

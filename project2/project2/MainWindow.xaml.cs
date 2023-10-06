@@ -72,9 +72,6 @@ namespace project2
 
         private void signupClick(object sender, RoutedEventArgs e)
         {
-
-
-
             MainWindowBorder.Visibility = Visibility.Hidden;
             SignUp.Visibility = Visibility.Visible;
 
@@ -199,6 +196,12 @@ namespace project2
         {
             LoggedIn.Visibility = Visibility.Hidden;
             MainWindowBorder.Visibility = Visibility.Visible;
+        }
+
+        private void startClick(object sender, RoutedEventArgs e)
+        {
+            Keuze screen = new Keuze();
+            screen.Show();
         }
     }
 }
