@@ -120,5 +120,28 @@ namespace project2.classes
             }
             return result;
         }
+
+        public bool HasProfileImage(string username)
+        {
+            try
+            {
+                _connection.Open();
+                MySqlCommand command = new MySqlCommand("SELECT profile_image FROM user WHERE username = @username", _connection);
+                command.Parameters.AddWithValue("@username", username);
+                byte[] profileImage = (byte[])command.ExecuteScalar();
+
+                // Check if profileImage is not null and has data
+                return profileImage != null && profileImage.Length > 0;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("An error occurred: " + e.Message);
+                return false;
+            }
+            finally
+            {
+                _connection.Close();
+            }
+        }
     }
 }

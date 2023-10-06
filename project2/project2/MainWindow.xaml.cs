@@ -18,6 +18,7 @@ using project2.classes;
 using System.Data;
 using Microsoft.Win32;
 using System.IO;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace project2
 {
@@ -150,7 +151,6 @@ namespace project2
             }
 
             DatabaseHandler dbHandler = new DatabaseHandler();
-
             DataTable userInfo = dbHandler.GetUserInfo(username);
 
             if (userInfo.Rows.Count == 0)
@@ -170,14 +170,51 @@ namespace project2
             // Successfully logged in. You can add your code for what happens after login here.
             // For example, navigate to the main window or show some user-specific content.
             System.Windows.MessageBox.Show("Login successful!");
+
             loggedInUsername = username;
+
             // Clear the textboxes
             txtUsername.Text = "";
             txtPassword.Password = "";
 
+            byte[] profileImage = null;
+            object profileImageObject = userInfo.Rows[0]["profile_image"];
+
+            if (profileImageObject != DBNull.Value)
+            {
+                profileImage = (byte[])profileImageObject;
+            }
+
+            // Optionally, update the profile image in the UI
+            if (profileImage != null && profileImage.Length > 0)
+            {
+                using (MemoryStream stream = new MemoryStream(profileImage))
+                {
+                    BitmapImage image = new BitmapImage();
+                    image.BeginInit();
+                    image.StreamSource = stream;
+                    image.CacheOption = BitmapCacheOption.OnLoad;
+                    image.EndInit();
+
+                    ImageBrush profileBrush = new ImageBrush();
+                    profileBrush.ImageSource = image;
+
+                    // Assuming ProfileRectangle is already defined
+                    ProfileRectangle.Fill = profileBrush;
+                }
+            }
+            else
+            {
+                ImageBrush ProfileImage = new ImageBrush();
+                ProfileImage.ImageSource = new BitmapImage(new Uri("images/profileimage.png", UriKind.Relative));
+
+
+                ProfileRectangle.Fill = ProfileImage; // Make sure ProfileImage is defined in your code
+
+            }
+
             MainWindowBorder.Visibility = Visibility.Hidden;
             LoggedIn.Visibility = Visibility.Visible;
-
 
 
             ImageBrush ProfileCanvas = new ImageBrush();
@@ -213,7 +250,7 @@ namespace project2
             screen.Show();
         }
         private void btnUploadImage_Click(object sender, RoutedEventArgs e)
-        {
+{
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Image files |*.jpg;*.jpeg;*.png;*.gif;*.bmp";
 
@@ -234,6 +271,5 @@ namespace project2
                 ProfileRectangle.Fill = newProfileImage;
             }
         }
-
     }
 }
