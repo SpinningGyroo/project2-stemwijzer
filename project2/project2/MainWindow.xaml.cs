@@ -12,6 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MySql.Data.MySqlClient;
+using System.Configuration;
+using project2.classes;
+using System.Data;
 
 namespace project2
 {
@@ -28,6 +32,7 @@ namespace project2
             LoggedIn.Visibility = Visibility.Hidden;
             SignUp.Visibility = Visibility.Hidden;
         }
+
 
         private void partycreator()
         {
@@ -67,26 +72,99 @@ namespace project2
 
         private void signupClick(object sender, RoutedEventArgs e)
         {
-            
+
 
 
             MainWindowBorder.Visibility = Visibility.Hidden;
             SignUp.Visibility = Visibility.Visible;
+
         }
 
-        private void createuserClick(object sender, RoutedEventArgs e)
+        private void btnCreateUser_Click(object sender, RoutedEventArgs e)
         {
+            string username = txtUsernameCreate.Text;
+            string password = txtPasswordCreate.Password.ToString();
+            string email = txtEmailCreate.Text;
+
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(email))
+            {
+                System.Windows.MessageBox.Show("Fill all three boxes.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            if (!IsValidEmail(email))
+            {
+                System.Windows.MessageBox.Show("Use an existing email.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            // All validations passed, proceed with registration.
+            DatabaseHandler dbHandler = new DatabaseHandler();
+            dbHandler.RegisterUser(username, password, email);
+
+            // Optionally, you can show a message to indicate successful registration.
+            System.Windows.MessageBox.Show("User registered successfully.");
+
+            txtUsernameCreate.Text = "";
+            txtPasswordCreate.Password = "";
+            txtEmailCreate.Text = "";
+
+            // Add the following lines to hide the SignUp controls and show the MainWindow controls
             SignUp.Visibility = Visibility.Hidden;
             MainWindowBorder.Visibility = Visibility.Visible;
         }
 
-        private void loginClick(object sender, RoutedEventArgs e)
+        private bool IsValidEmail(string email)
         {
+            // Basic email format validation using a regular expression.
+            // You might want to use a more sophisticated validation method in a real application.
+            return System.Text.RegularExpressions.Regex.IsMatch(email, @"^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$");
+        }
+
+
+
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            string username = txtUsername.Text;
+            string password = txtPassword.Password.ToString();
+
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+            {
+                System.Windows.MessageBox.Show("Fill in both username and password.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            DatabaseHandler dbHandler = new DatabaseHandler();
+
+            DataTable userInfo = dbHandler.GetUserInfo(username);
+
+            if (userInfo.Rows.Count == 0)
+            {
+                System.Windows.MessageBox.Show("Wrong Username or Password", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            string storedPassword = userInfo.Rows[0]["password"].ToString();
+
+            if (password != storedPassword)
+            {
+                System.Windows.MessageBox.Show("Wrong Password", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            // Successfully logged in. You can add your code for what happens after login here.
+            // For example, navigate to the main window or show some user-specific content.
+            System.Windows.MessageBox.Show("Login successful!");
+
+            // Clear the textboxes
+            txtUsername.Text = "";
+            txtPassword.Password = "";
+
             MainWindowBorder.Visibility = Visibility.Hidden;
             LoggedIn.Visibility = Visibility.Visible;
 
             ImageBrush ProfileImage = new ImageBrush();
-            ProfileImage.ImageSource = new BitmapImage(new Uri("images/uta.jpg", UriKind.Relative));
+            ProfileImage.ImageSource = new BitmapImage(new Uri("images/profileimage.png", UriKind.Relative));
 
             Rectangle ProfileRectangle = new Rectangle();
             ProfileRectangle.Margin = new Thickness(4);

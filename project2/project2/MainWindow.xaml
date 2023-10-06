@@ -162,7 +162,7 @@
                 </Grid.RowDefinitions>
 
                 <Viewbox Stretch="Uniform" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="4">
-                    <Button Name="btnCreateUser" FontSize="60" FontWeight="Bold" Foreground="White" Background="#0057FF" BorderBrush="#0057FF" Click="createuserClick">create user</Button>
+                    <Button x:Name="btnCreateUser" FontSize="60" FontWeight="Bold" Foreground="White" Background="#0057FF" BorderBrush="#0057FF" Click="btnCreateUser_Click">create user</Button>
                 </Viewbox>
                 <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left">
                     <TextBlock Foreground="White">username:</TextBlock>
@@ -175,14 +175,14 @@
                 </Viewbox>
 
                 <Viewbox Stretch="Fill" Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="2">
-                    <PasswordBox Name="txtPasswordCreate" FontSize="8" Width="80" BorderBrush="#0057FF"></PasswordBox>
+                    <PasswordBox x:Name="txtPasswordCreate" FontSize="8" Width="80" BorderBrush="#0057FF"></PasswordBox>
                 </Viewbox>
 
                 <Viewbox Stretch="Fill" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2">
-                    <TextBox Name="txtUsernameCreate" Width="80" FontSize="8" BorderBrush="#0057FF"></TextBox>
+                    <TextBox x:Name="txtUsernameCreate" Width="80" FontSize="8" BorderBrush="#0057FF"></TextBox>
                 </Viewbox>
                 <Viewbox Stretch="Fill" Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="2">
-                    <TextBox Name="txtEmailCreate" Width="80" FontSize="8" BorderBrush="#0057FF"></TextBox>
+                    <TextBox x:Name="txtEmailCreate" Width="80" FontSize="8" BorderBrush="#0057FF"></TextBox>
                 </Viewbox>
 
                 <Viewbox HorizontalAlignment="Right" Stretch="Fill" Grid.Row="4" Grid.Column="1">
@@ -233,13 +233,13 @@
                     <TextBlock Foreground="White">password:</TextBlock>
                 </Viewbox>
                 <Viewbox HorizontalAlignment="Right" Stretch="Uniform" Grid.Row="3" Grid.Column="2">
-                    <Button x:Name="btnLogin" Click="loginClick" Foreground="White" Background="#0057FF" BorderBrush="#0057FF">log in</Button>
+                    <Button x:Name="btnLogin" Click="btnLogin_Click" Foreground="White" Background="#0057FF" BorderBrush="#0057FF">log in</Button>
                 </Viewbox>
                 <Viewbox Stretch="Fill" Grid.Row="1" Grid.Column="2">
-                    <TextBox Name="txtUsername" Width="80" FontSize="8" BorderBrush="#0057FF"></TextBox>
+                    <TextBox x:Name="txtUsername" Width="80" FontSize="8" BorderBrush="#0057FF"></TextBox>
                 </Viewbox>
                 <Viewbox Stretch="Fill" Grid.Row="2" Grid.Column="2">
-                    <PasswordBox Name="txtPassword" FontSize="8" Width="80" BorderBrush="#0057FF"></PasswordBox>
+                    <PasswordBox x:Name="txtPassword" FontSize="8" Width="80" BorderBrush="#0057FF"></PasswordBox>
                 </Viewbox>
                 <Viewbox Stretch="Uniform" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2">
                     <Button x:Name="btnSignup" FontSize="60" FontWeight="Bold" Foreground="White" Background="#0057FF" BorderBrush="#0057FF" Click="signupClick" Content="Register"/>

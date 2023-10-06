@@ -107,6 +107,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="classes\DatabaseHandler.cs" />
     <Compile Include="Keuze.xaml.cs">
       <DependentUpon>Keuze.xaml</DependentUpon>
     </Compile>
