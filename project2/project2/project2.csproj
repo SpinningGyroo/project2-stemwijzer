@@ -169,6 +169,7 @@
     <Content Include="images\bluecircle.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="images\carrot.png" />
     <Content Include="images\cross.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
