@@ -54,33 +54,64 @@ namespace project2
 
         private void partycreator()
         {
-            for (int row = 1; row < 6; row++)
-            {
-                partycounter++;
-                for (int col = 1; col < 4; col++)
-                {
-                    ImageBrush imageBrush = new ImageBrush();
-                    imageBrush.ImageSource = new BitmapImage(new Uri("images/bluecircle.png", UriKind.Relative));
+            DatabaseHandler dbHandler = new DatabaseHandler();
+            DataTable partiesTable = dbHandler.GetParties();
 
-                    Rectangle rectangle = new Rectangle();
-                    rectangle.Fill = imageBrush;
-                    rectangle.Margin = new Thickness(4);
-                    Grid.SetRow(rectangle, row);
-                    Grid.SetColumn(rectangle, col);
-                    gridPartijen.Children.Add(rectangle);
+            int row = 1;
+            int col = 1;
+
+            for (int i = 0; i < partiesTable.Rows.Count - 1; i++)
+            {
+                DataRow partyRow = partiesTable.Rows[i];
+                int partyId = Convert.ToInt32(partyRow["ID"]);
+                byte[] partyLogo = (byte[])partyRow["partij_logo"];
+
+                ImageBrush imageBrush = new ImageBrush();
+                BitmapImage bitmapImage = new BitmapImage();
+                bitmapImage.BeginInit();
+                bitmapImage.StreamSource = new MemoryStream(partyLogo);
+                bitmapImage.EndInit();
+                imageBrush.ImageSource = bitmapImage;
+
+                Rectangle rectangle = new Rectangle();
+                rectangle.Fill = imageBrush;
+                rectangle.Margin = new Thickness(4);
+                Grid.SetRow(rectangle, row);
+                Grid.SetColumn(rectangle, col);
+                gridPartijen.Children.Add(rectangle);
+
+                col++;
+
+                if (col > 3)
+                {
+                    col = 1;
+                    row++;
                 }
             }
 
-            ImageBrush finalImageBrush = new ImageBrush();
-            finalImageBrush.ImageSource = new BitmapImage(new Uri("images/bluecircle.png", UriKind.Relative));
+            // Add the final party logo to the bottom middle
+            if (partiesTable.Rows.Count > 0)
+            {
+                DataRow finalPartyRow = partiesTable.Rows[partiesTable.Rows.Count - 1];
+                byte[] finalPartyLogo = (byte[])finalPartyRow["partij_logo"];
 
-            Rectangle finalRectangle = new Rectangle();
-            finalRectangle.Fill = finalImageBrush;
-            finalRectangle.Margin = new Thickness(4);
-            Grid.SetRow(finalRectangle, 6);
-            Grid.SetColumn(finalRectangle, 2);
-            gridPartijen.Children.Add(finalRectangle);
+                ImageBrush finalImageBrush = new ImageBrush();
+                BitmapImage finalBitmapImage = new BitmapImage();
+                finalBitmapImage.BeginInit();
+                finalBitmapImage.StreamSource = new MemoryStream(finalPartyLogo);
+                finalBitmapImage.EndInit();
+                finalImageBrush.ImageSource = finalBitmapImage;
+
+                Rectangle finalRectangle = new Rectangle();
+                finalRectangle.Fill = finalImageBrush;
+                finalRectangle.Margin = new Thickness(4);
+                Grid.SetRow(finalRectangle, 6);
+                Grid.SetColumn(finalRectangle, 2);
+                gridPartijen.Children.Add(finalRectangle);
+            }
         }
+
+
 
         private void HistoryClick(object sender, RoutedEventArgs e)
         {

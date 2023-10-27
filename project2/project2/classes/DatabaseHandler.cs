@@ -143,5 +143,26 @@ namespace project2.classes
                 _connection.Close();
             }
         }
+
+        public DataTable GetParties()
+        {
+            DataTable result = new DataTable();
+            try
+            {
+                _connection.Open();
+                MySqlCommand command = new MySqlCommand("SELECT ID, partij_logo FROM partijen", _connection);
+                MySqlDataReader reader = command.ExecuteReader();
+                result.Load(reader);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("An error occurred: " + e.Message);
+            }
+            finally
+            {
+                _connection.Close();
+            }
+            return result;
+        }
     }
 }
