@@ -150,7 +150,7 @@ namespace project2.classes
             try
             {
                 _connection.Open();
-                MySqlCommand command = new MySqlCommand("SELECT ID, partij_logo FROM partijen", _connection);
+                MySqlCommand command = new MySqlCommand("SELECT ID, naam, info_tekst, url, partij_logo FROM partijen", _connection);
                 MySqlDataReader reader = command.ExecuteReader();
                 result.Load(reader);
             }

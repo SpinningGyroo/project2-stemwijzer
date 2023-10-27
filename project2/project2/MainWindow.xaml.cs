@@ -29,7 +29,6 @@ namespace project2
     {
         private string loggedInUsername;
         Rectangle ProfileRectangle;
-        int partycounter = 0;
         public MainWindow()
         {
             InitializeComponent();
@@ -65,6 +64,9 @@ namespace project2
                 DataRow partyRow = partiesTable.Rows[i];
                 int partyId = Convert.ToInt32(partyRow["ID"]);
                 byte[] partyLogo = (byte[])partyRow["partij_logo"];
+                string partyName = partyRow["naam"].ToString();
+                string partyInfo = partyRow["info_tekst"].ToString();
+                string partyUrl = partyRow["url"].ToString();
 
                 ImageBrush imageBrush = new ImageBrush();
                 BitmapImage bitmapImage = new BitmapImage();
@@ -78,6 +80,16 @@ namespace project2
                 rectangle.Margin = new Thickness(4);
                 Grid.SetRow(rectangle, row);
                 Grid.SetColumn(rectangle, col);
+
+                rectangle.MouseLeftButtonDown += (sender, e) =>
+                {
+                    MessageBoxResult result = MessageBox.Show($"{partyName}, {partyInfo} Wil je door naar de website?", "Partij Info", MessageBoxButton.YesNo);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        System.Diagnostics.Process.Start(partyUrl);
+                    }
+                };
+
                 gridPartijen.Children.Add(rectangle);
 
                 col++;
@@ -94,6 +106,9 @@ namespace project2
             {
                 DataRow finalPartyRow = partiesTable.Rows[partiesTable.Rows.Count - 1];
                 byte[] finalPartyLogo = (byte[])finalPartyRow["partij_logo"];
+                string finalPartyName = finalPartyRow["naam"].ToString();
+                string finalPartyInfo = finalPartyRow["info_tekst"].ToString();
+                string finalPartyUrl = finalPartyRow["url"].ToString();
 
                 ImageBrush finalImageBrush = new ImageBrush();
                 BitmapImage finalBitmapImage = new BitmapImage();
@@ -108,6 +123,15 @@ namespace project2
                 Grid.SetRow(finalRectangle, 6);
                 Grid.SetColumn(finalRectangle, 2);
                 gridPartijen.Children.Add(finalRectangle);
+
+                finalRectangle.MouseLeftButtonDown += (sender, e) =>
+                {
+                    MessageBoxResult result = MessageBox.Show($"{finalPartyName}, {finalPartyInfo} Wil je door naar de website?", "Partij Info", MessageBoxButton.YesNo);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        System.Diagnostics.Process.Start(finalPartyUrl);
+                    }
+                };
             }
         }
 
@@ -277,8 +301,15 @@ namespace project2
 
         private void startClick(object sender, RoutedEventArgs e)
         {
-            Keuze screen = new Keuze();
-            screen.Show();
+            if (!string.IsNullOrEmpty(loggedInUsername))
+            {
+                Keuze screen = new Keuze();
+                screen.Show();
+            }
+            else
+            {
+                MessageBox.Show("You need to be logged in to access this feature.", "Access Denied", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
         private void btnUploadImage_Click(object sender, RoutedEventArgs e)
 {
