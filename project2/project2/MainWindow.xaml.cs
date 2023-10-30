@@ -308,7 +308,7 @@ namespace project2
             }
             else
             {
-                MessageBox.Show("You need to be logged in to access this feature.", "Access Denied", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("You need to be logged in.", "Access Denied", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
         private void btnUploadImage_Click(object sender, RoutedEventArgs e)

@@ -46,7 +46,7 @@
                     <RowDefinition Height="0.2*"/>
                 </Grid.RowDefinitions>
                 <Viewbox HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1">
-                    <TextBlock>TITEL</TextBlock>
+                    <TextBlock>Stemwijzer</TextBlock>
                 </Viewbox>
                 <Viewbox Stretch="Fill" Grid.Row="2" Grid.Column="1">
                     <Button Background="#0057FF" FontSize="15" BorderBrush="Black" Foreground="White" Click="startClick">START</Button>
