@@ -28,5 +28,10 @@ namespace project2
         {
 
         }
+
+        private void RadialProgressBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+
+        }
     }
 }

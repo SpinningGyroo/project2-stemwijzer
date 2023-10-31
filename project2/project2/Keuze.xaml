@@ -1,6 +1,7 @@
 ﻿<Window x:Class="project2.Keuze"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:xrpb="http://XamlRadialProgressBar/DotNet"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:project2"
@@ -18,7 +19,7 @@
             <RowDefinition Height="0.1*"/>
         </Grid.RowDefinitions>
 
-        <Grid x:Name="gridKeuze" Grid.Column="1" Grid.Row="1" Visibility="Visible">
+        <Grid x:Name="gridKeuze" Grid.Column="1" Grid.Row="1" Visibility="Hidden">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.1*"/>
                 <ColumnDefinition Width="0.5*"/>
@@ -159,6 +160,32 @@
                 </Border>
 
             </Grid>
+
+        </Grid>
+
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Grid.Background>
+                <ImageBrush ImageSource="images/yippie.png"/>
+            </Grid.Background>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10px"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="10px"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="10px"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="10px"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10px"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="10px"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="10px"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="10px"/>
+            </Grid.RowDefinitions>
 
         </Grid>
         

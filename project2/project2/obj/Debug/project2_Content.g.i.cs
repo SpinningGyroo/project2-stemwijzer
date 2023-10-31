@@ -10,6 +10,9 @@
 
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/arrowback.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/bluecircle.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/yippie.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("radialprogressbar/xamlradialprogressbar.dll")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("radialprogressbar/xamlradialprogressbar.dotnet.dll")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/cross.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/profileimage-canvas.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/profileimage.png")]

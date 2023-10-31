@@ -98,6 +98,14 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="XamlRadialProgressBar, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>radialprogressbar\XamlRadialProgressBar.dll</HintPath>
+    </Reference>
+    <Reference Include="XamlRadialProgressBar.DotNet, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>radialprogressbar\XamlRadialProgressBar.DotNet.dll</HintPath>
+    </Reference>
     <Reference Include="ZstdSharp, Version=0.7.1.0, Culture=neutral, PublicKeyToken=8d151af33a4ad5cf, processorArchitecture=MSIL">
       <HintPath>..\packages\ZstdSharp.Port.0.7.1\lib\net461\ZstdSharp.dll</HintPath>
     </Reference>
@@ -158,6 +166,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="radialprogressbar\XamlRadialProgressBar.deps.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -169,6 +178,11 @@
     <Content Include="images\bluecircle.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="images\yippie.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="radialprogressbar\XamlRadialProgressBar.dll" />
+    <Content Include="radialprogressbar\XamlRadialProgressBar.DotNet.dll" />
     <Resource Include="images\carrot.png" />
     <Content Include="images\cross.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -186,5 +200,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
