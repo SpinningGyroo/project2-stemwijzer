@@ -103,7 +103,7 @@
             </Rectangle>
         </Grid>
 
-        <Grid Grid.Row="1" Grid.Column="1" x:Name="gridConfirmed">
+        <Grid Grid.Row="1" Grid.Column="1" x:Name="gridConfirmed" Visibility="Hidden">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.1*"/>
@@ -125,6 +125,40 @@
                     <ImageBrush ImageSource="images/arrowback.png"/>
                 </Rectangle.Fill>
             </Rectangle>
+
+            <Grid Grid.Row="1" Grid.Column="2">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="0.3*"/>
+                    <RowDefinition Height="0.5*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="0.3*"/>
+                </Grid.RowDefinitions>
+
+                <Viewbox Grid.ColumnSpan="3">
+                    <StackPanel>
+                        <TextBlock FontSize="10" TextAlignment="Center">Stemwijzer succesvol ingevuld</TextBlock>
+                        <TextBlock FontSize="4" TextAlignment="Center">Je kunt je antwoorden nog aanpassen!</TextBlock>
+                    </StackPanel>
+                </Viewbox>
+
+                <Border Grid.Row="3" Grid.Column="1"
+                    BorderThickness="10,10,10,10" Margin="0" 
+                            CornerRadius="10,10,10,10" BorderBrush="#0057FF">
+                    <Grid Background="#0057FF" Margin="-2">
+                    <Viewbox Margin="0">
+                        <Button FontSize="0.4" Background="#0057FF" Foreground="White" BorderThickness="0" Width="5">bekijk resultaat</Button>
+                    </Viewbox>
+                    </Grid>
+                </Border>
+
+            </Grid>
 
         </Grid>
         
