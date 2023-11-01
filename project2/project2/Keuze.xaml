@@ -8,9 +8,7 @@
         mc:Ignorable="d"
         Title="Keuze" Height="450" Width="800">
     <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="images/yippie.png"/>
-        </Grid.Background>
+
         
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.1*"/>
@@ -23,7 +21,7 @@
             <RowDefinition Height="0.1*"/>
         </Grid.RowDefinitions>
 
-        <Grid x:Name="gridKeuze" Grid.Column="1" Grid.Row="1" Visibility="Hidden">
+        <Grid x:Name="gridKeuze" Grid.Column="1" Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.1*"/>
                 <ColumnDefinition Width="0.5*"/>
@@ -63,13 +61,13 @@
             </Border>
 
             <Viewbox Grid.Row="4" Grid.Column="2" Stretch="Uniform" HorizontalAlignment="Right" Margin="0,0,10,0">
-                <Button Background="LawnGreen" BorderThickness="0">
+                <Button Background="LawnGreen" BorderThickness="0" Click="eens_Click">
                     EENS
                 </Button>
             </Viewbox>
 
             <Viewbox Grid.Row="4" Grid.Column="3" Stretch="Uniform" HorizontalAlignment="Left" Margin="10,0,0,0">
-                <Button BorderThickness="0" Background="Red">
+                <Button BorderThickness="0" Background="Red" Click="oneens_Click">
                     ONEENS
                 </Button>
             </Viewbox>
@@ -167,8 +165,11 @@
 
         </Grid>
 
-        <Grid Grid.Column="1" Grid.Row="1" x:Name="gridResult">
-            
+        <Grid Grid.Column="1" Grid.Row="1" x:Name="gridResult" Visibility="Hidden">
+            <Grid.Background>
+                <ImageBrush ImageSource="images/yippie.png"/>
+            </Grid.Background>
+
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="10px"/>

@@ -164,5 +164,29 @@ namespace project2.classes
             }
             return result;
         }
+
+
+        public DataTable GetStatementById(int id)
+        {
+            DataTable result = new DataTable();
+            try
+            {
+                _connection.Open();
+                MySqlCommand command = new MySqlCommand("SELECT * FROM stellingen WHERE id = @id", _connection);
+                command.Parameters.AddWithValue("@id", id);
+                MySqlDataReader reader = command.ExecuteReader();
+                result.Load(reader);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("An error occurred: " + e.Message);
+            }
+            finally
+            {
+                _connection.Close();
+            }
+            return result;
+        }
+
     }
 }
