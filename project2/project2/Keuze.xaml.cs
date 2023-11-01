@@ -31,8 +31,6 @@ namespace project2
 
         private void mainMenubtn(object sender, MouseButtonEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
             this.Close();
         }
     }
