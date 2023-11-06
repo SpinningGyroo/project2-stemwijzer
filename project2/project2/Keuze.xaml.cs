@@ -53,6 +53,7 @@ namespace project2
             {
                 currentStatementId++;
                 LoadStatement(currentStatementId);
+                UpdatePartyValues("oneens");
             }
         }
 
@@ -62,6 +63,7 @@ namespace project2
             {
                 currentStatementId++;
                 LoadStatement(currentStatementId);
+                UpdatePartyValues("eens");
             }
         }
 
@@ -77,6 +79,17 @@ namespace project2
         private void mainMenubtn(object sender, MouseButtonEventArgs e)
         {
             this.Close();
+        }
+
+        private void UpdatePartyValues(string userStance)
+        {
+            DatabaseHandler dbHandler = new DatabaseHandler();
+            Dictionary<string, int> partiesValues = dbHandler.GetPartiesWithValuesBasedOnStance(userStance);
+
+            foreach (var partyValue in partiesValues)
+            {
+                Console.WriteLine($"Party: {partyValue.Key}, Value: {partyValue.Value}");
+            }
         }
     }
 }

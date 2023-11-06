@@ -301,10 +301,13 @@ namespace project2
 
         private void startClick(object sender, RoutedEventArgs e)
         {
+            DatabaseHandler dbHandler = new DatabaseHandler();
+
             if (!string.IsNullOrEmpty(loggedInUsername))
             {
                 Keuze screen = new Keuze();
                 screen.Show();
+                Dictionary<string, int> partyValues = dbHandler.ResetPartyValues();
             }
             else
             {
