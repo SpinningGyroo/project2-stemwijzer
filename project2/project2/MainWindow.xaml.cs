@@ -307,7 +307,6 @@ namespace project2
             {
                 Keuze screen = new Keuze();
                 screen.Show();
-                Dictionary<string, int> partyValues = dbHandler.ResetPartyValues();
             }
             else
             {

@@ -187,55 +187,5 @@ namespace project2.classes
             }
             return result;
         }
-
-        public Dictionary<string, int> GetPartiesWithValuesBasedOnStance(string userStance)
-        {
-            Dictionary<string, int> partiesWithValue = new Dictionary<string, int>();
-
-            DataTable partiesData = GetParties(); // Assuming GetParties method retrieves the parties from the database
-
-            if (partiesData.Rows.Count > 0)
-            {
-                foreach (DataRow row in partiesData.Rows)
-                {
-                    string partyName = row["naam"].ToString();
-                    int baseValue = 160;
-
-                    // Check the party's stance and update values accordingly
-                    if (row["stance"].ToString() == userStance)
-                    {
-                        baseValue += 10; // +10 for parties associated with the user's stance
-                    }
-                    else
-                    {
-                        baseValue -= 10; // -10 for parties with a different stance
-                    }
-
-                    partiesWithValue.Add(partyName, baseValue);
-                }
-            }
-
-            return partiesWithValue;
-        }
-
-        public Dictionary<string, int> ResetPartyValues()
-        {
-            Dictionary<string, int> partiesWithValue = new Dictionary<string, int>();
-
-            DataTable partiesData = GetParties(); // Assuming GetParties method retrieves the parties from the database
-
-            if (partiesData.Rows.Count > 0)
-            {
-                foreach (DataRow row in partiesData.Rows)
-                {
-                    string partyName = row["naam"].ToString();
-                    int baseValue = 160; // Reset value to 160
-
-                    partiesWithValue.Add(partyName, baseValue);
-                }
-            }
-
-            return partiesWithValue;
-        }
     }
 }
