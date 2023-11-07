@@ -187,5 +187,68 @@ namespace project2.classes
             }
             return result;
         }
+
+        public Dictionary<string, string> GetPartyOpinionsForStatement(int statementID)
+        {
+            Dictionary<string, string> partyOpinions = new Dictionary<string, string>();
+
+            try
+            {
+                _connection.Open();
+                MySqlCommand command = new MySqlCommand(
+                    "SELECT po.Partij, po.Mening " +
+                    "FROM party_opinions po " +
+                    "INNER JOIN stellingen s ON po.MeningID = s.ID " +
+                    "WHERE po.MeningID = @statementID", _connection);
+                command.Parameters.AddWithValue("@statementID", statementID);
+
+                MySqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    string party = reader["Partij"].ToString();
+                    string opinion = reader["Mening"].ToString();
+                    partyOpinions.Add(party, opinion);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("An error occurred: " + e.Message);
+            }
+            finally
+            {
+                _connection.Close();
+            }
+
+            return partyOpinions;
+        }
+
+        public List<string> GetAllPartyNames()
+        {
+            List<string> partyNames = new List<string>();
+
+            try
+            {
+                _connection.Open();
+                MySqlCommand command = new MySqlCommand("SELECT naam FROM partijen", _connection);
+                MySqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    string partyName = reader["naam"].ToString();
+                    partyNames.Add(partyName);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("An error occurred: " + e.Message);
+            }
+            finally
+            {
+                _connection.Close();
+            }
+
+            return partyNames;
+        }
+
     }
 }
