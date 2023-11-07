@@ -24,6 +24,7 @@
         private DatabaseHandler dbHandler = new DatabaseHandler();
         private int currentStatementId = 1;
         private Dictionary<string, int> partyValues = new Dictionary<string, int>();
+        private Dictionary<string, int> previousPartyValues;
 
         public Keuze()
         {
@@ -32,9 +33,13 @@
 
             List<string> partyNames = dbHandler.GetAllPartyNames();
 
+            partyValues = new Dictionary<string, int>();
+            previousPartyValues = new Dictionary<string, int>();
+
             foreach (string party in partyNames)
             {
-                partyValues[party] = 160; // Set initial value of 160 for each party
+                partyValues[party] = 160;
+                previousPartyValues[party] = 160;
             }
         }
 
@@ -71,7 +76,7 @@
 
             private void oneens_Click(object sender, RoutedEventArgs e)
             {
-                if (currentStatementId < 16)
+                if (currentStatementId < 17)
                 {
                     AdjustPartyValues("oneens");
                     currentStatementId++;
@@ -81,7 +86,7 @@
 
             private void eens_Click(object sender, RoutedEventArgs e)
             {
-                if (currentStatementId < 16)
+                if (currentStatementId < 17)
                 {
                     AdjustPartyValues("eens");
                     currentStatementId++;
@@ -89,54 +94,63 @@
                 }
             }
 
-            private void backAction(object sender, MouseButtonEventArgs e)
+        private void backAction(object sender, MouseButtonEventArgs e)
+        {
+            if (currentStatementId > 1)
             {
-                if (currentStatementId > 1)
-                {
-                    currentStatementId--;
-                    LoadStatement(currentStatementId);
-                }
-            }
+                // Create a copy of the party names
+                List<string> partyNames = new List<string>(partyValues.Keys);
 
-            private void AdjustPartyValues(string opinion)
-            {
+                // Revert partyValues to previousPartyValues
+                foreach (var party in partyNames)
+                {
+                    partyValues[party] = previousPartyValues[party];
+                }
+
+                currentStatementId--;
+                LoadStatement(currentStatementId);
+            }
+        }
+
+        private void AdjustPartyValues(string opinion)
+        {
             Dictionary<string, int> adjustments = new Dictionary<string, int>();
             var partyOpinions = dbHandler.GetPartyOpinionsForStatement(currentStatementId);
 
-            if (partyOpinions != null) // Check if party opinions are available for the statement
+            if (partyOpinions != null)
             {
                 foreach (var party in partyValues.Keys)
                 {
-                    // Check if the party exists in the opinions for the current statement
                     if (partyOpinions.ContainsKey(party))
                     {
                         if ((opinion == "eens" && partyOpinions[party] == "eens") ||
-                            (opinion == "oneens" && partyOpinions[party] == "eens"))
+                            (opinion == "oneens" && partyOpinions[party] == "oneens"))
                         {
-                            adjustments[party] = 10;  // Add 10 to parties with the same opinion
+                            adjustments[party] = 10;
                         }
                         else
                         {
-                            adjustments[party] = -10;  // Subtract 10 from parties with the opposite opinion
+                            adjustments[party] = -10;
                         }
                     }
                     else
                     {
-                        adjustments[party] = 0; // No opinion found, set adjustment to 0 or handle as needed
+                        adjustments[party] = 0;
                     }
                 }
             }
 
-            // Apply adjustments to the party values
+            // Update both partyValues and previousPartyValues
             foreach (var adjustment in adjustments)
             {
+                previousPartyValues[adjustment.Key] = partyValues[adjustment.Key];
                 partyValues[adjustment.Key] += adjustment.Value;
             }
 
             ShowScores();
         }
 
-            private void mainMenubtn(object sender, MouseButtonEventArgs e)
+        private void mainMenubtn(object sender, MouseButtonEventArgs e)
             {
                 this.Close();
             }
