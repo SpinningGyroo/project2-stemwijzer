@@ -6,18 +6,25 @@ using System.Threading.Tasks;
 using System.Data;
 using MySql.Data.MySqlClient;
 using System.IO;
+using System.Windows;
 
 namespace project2.classes
 {
     class DatabaseHandler
     {
-        MySqlConnection _connection = new MySqlConnection("Server=localhost;Database=dbstellingen;UID=root;Pwd=;");
+        private static MySqlConnection _connection = new MySqlConnection("Server=localhost;Database=dbstellingen;UID=root;Pwd=;");
 
         public void RegisterUser(string username, string password, string email, byte[] profileImage = null)
-
         {
             try
             {
+                // Check if the username already exists
+                if (UsernameExists(username))
+                {
+                    System.Windows.MessageBox.Show("Username already exists. Please choose a different username.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
                 _connection.Open();
                 MySqlCommand command = new MySqlCommand("INSERT INTO user (username, password, email, profile_image) VALUES (@username, @password, @email, @profileImage)", _connection);
                 command.Parameters.AddWithValue("@username", username);
@@ -25,6 +32,8 @@ namespace project2.classes
                 command.Parameters.AddWithValue("@email", email);
                 command.Parameters.AddWithValue("@profileImage", profileImage);
                 command.ExecuteNonQuery();
+
+                System.Windows.MessageBox.Show("User registered successfully.");
             }
             catch (Exception e)
             {
@@ -35,6 +44,28 @@ namespace project2.classes
                 _connection.Close();
             }
         }
+
+        public static bool UsernameExists(string username)
+        {
+            try
+            {
+                _connection.Open();
+                MySqlCommand command = new MySqlCommand("SELECT COUNT(*) FROM user WHERE username = @username", _connection);
+                command.Parameters.AddWithValue("@username", username);
+                int count = Convert.ToInt32(command.ExecuteScalar());
+                return count > 0;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("An error occurred: " + e.Message);
+                return false; // Assuming an error means username doesn't exist (for simplicity)
+            }
+            finally
+            {
+                _connection.Close();
+            }
+        }
+
 
         public void UpdateProfileImage(string username, byte[] profileImage)
         {

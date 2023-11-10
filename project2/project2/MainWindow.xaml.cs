@@ -162,26 +162,33 @@ namespace project2
                 return;
             }
 
+
             if (!IsValidEmail(email))
             {
                 System.Windows.MessageBox.Show("Use an existing email.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
+
             // All validations passed, proceed with registration.
             DatabaseHandler dbHandler = new DatabaseHandler();
             dbHandler.RegisterUser(username, password, email);
 
-            // Optionally, you can show a message to indicate successful registration.
-            System.Windows.MessageBox.Show("User registered successfully.");
+            // Optionally, you can show a message to indicate successful registration
 
             txtUsernameCreate.Text = "";
             txtPasswordCreate.Password = "";
             txtEmailCreate.Text = "";
 
-            // Add the following lines to hide the SignUp controls and show the MainWindow controls
-            SignUp.Visibility = Visibility.Hidden;
-            MainWindowBorder.Visibility = Visibility.Visible;
+            if (!DatabaseHandler.UsernameExists(username))
+            {
+                MessageBox.Show("User registered successfully.");
+
+                SignUp.Visibility = Visibility.Hidden;
+                MainWindowBorder.Visibility = Visibility.Visible;
+            }
+            
+
         }
 
         private bool IsValidEmail(string email)
