@@ -121,7 +121,6 @@
                         adjustments[party] = 0;
                     }
                 }
-                dbHandler.SavePartyValuesForStatement(currentStatementId, partyValues);
                 ShowScores();
             }
 

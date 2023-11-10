@@ -250,66 +250,7 @@ namespace project2.classes
             return partyNames;
         }
 
-        public Dictionary<string, int> GetPartyValuesForStatement(int statementID)
-        {
-            Dictionary<string, int> partyValues = new Dictionary<string, int>();
 
-            try
-            {
-                _connection.Open();
-                MySqlCommand command = new MySqlCommand("SELECT Party, Value FROM Party_Values WHERE StatementID = @statementID", _connection);
-                command.Parameters.AddWithValue("@statementID", statementID);
-                MySqlDataReader reader = command.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    string party = reader["Party"].ToString();
-                    int value = Convert.ToInt32(reader["Value"]);
-                    partyValues.Add(party, value);
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("An error occurred: " + e.Message);
-            }
-            finally
-            {
-                _connection.Close();
-            }
-
-            return partyValues;
-        }
-
-        public void SavePartyValuesForStatement(int statementID, Dictionary<string, int> partyValues)
-        {
-            try
-            {
-                _connection.Open();
-
-                // First, delete existing values for the given statement ID
-                MySqlCommand deleteCommand = new MySqlCommand("DELETE FROM Party_Values WHERE StatementID = @statementID", _connection);
-                deleteCommand.Parameters.AddWithValue("@statementID", statementID);
-                deleteCommand.ExecuteNonQuery();
-
-                // Insert the new values
-                foreach (var partyValue in partyValues)
-                {
-                    MySqlCommand insertCommand = new MySqlCommand("INSERT INTO Party_Values (StatementID, Party, Value) VALUES (@statementID, @party, @value)", _connection);
-                    insertCommand.Parameters.AddWithValue("@statementID", statementID);
-                    insertCommand.Parameters.AddWithValue("@party", partyValue.Key);
-                    insertCommand.Parameters.AddWithValue("@value", partyValue.Value);
-                    insertCommand.ExecuteNonQuery();
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("An error occurred: " + e.Message);
-            }
-            finally
-            {
-                _connection.Close();
-            }
-        }
 
         public int GetUserIdByUsername(string username)
         {
