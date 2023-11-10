@@ -21,7 +21,7 @@
             <RowDefinition Height="0.1*"/>
         </Grid.RowDefinitions>
 
-        <Grid x:Name="gridKeuze" Grid.Column="1" Grid.Row="1">
+        <Grid x:Name="gridKeuze" Grid.Column="1" Grid.Row="1" Visibility="Visible">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.1*"/>
                 <ColumnDefinition Width="0.5*"/>
@@ -38,12 +38,6 @@
                 <RowDefinition Height="0.5*"/>
                 <RowDefinition Height="0.3*"/>
             </Grid.RowDefinitions>
-
-            <Rectangle MouseDown="backAction" Grid.Row="2" Grid.Column="1" Margin="0,30,0,20">
-                <Rectangle.Fill>
-                    <ImageBrush ImageSource="images/arrowback.png"/>
-                </Rectangle.Fill>
-            </Rectangle>
 
             <Viewbox Grid.Row="5" Grid.Column="4">
                 <TextBlock x:Name="pageCounter">1/16</TextBlock>
@@ -103,7 +97,7 @@
                     </Rectangle>
                 </StackPanel>
             </Viewbox>
-            <Rectangle Grid.Row="1" Grid.Column="1" Margin="0,30,0,20" Height="50" Width="50">
+            <Rectangle Grid.Row="1" Grid.Column="1" Margin="0,30,0,20" Height="50" Width="50" MouseDown="backToStart_click">
                 <Rectangle.Fill>
                     <ImageBrush ImageSource="images/arrowback.png"/>
                 </Rectangle.Fill>
@@ -125,13 +119,6 @@
                 <RowDefinition Height="0.1*"/>
             </Grid.RowDefinitions>
             
-            
-
-            <Rectangle Grid.Row="1" Grid.Column="1" Margin="0,30,0,20" Height="50" Width="50">
-                <Rectangle.Fill>
-                    <ImageBrush ImageSource="images/arrowback.png"/>
-                </Rectangle.Fill>
-            </Rectangle>
 
             <Grid Grid.Row="1" Grid.Column="2">
 
@@ -160,7 +147,7 @@
                             CornerRadius="10,10,10,10" BorderBrush="#0057FF">
                     <Grid Background="#0057FF" Margin="-2">
                     <Viewbox Margin="0">
-                        <Button FontSize="0.4" Background="#0057FF" Foreground="White" BorderThickness="0" Width="5">bekijk resultaat</Button>
+                        <Button FontSize="0.4" Background="#0057FF" Click="resultaat_click" Foreground="White" BorderThickness="0" Width="5">bekijk resultaat</Button>
                     </Viewbox>
                     </Grid>
                 </Border>

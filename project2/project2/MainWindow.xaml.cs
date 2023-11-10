@@ -305,7 +305,8 @@ namespace project2
 
             if (!string.IsNullOrEmpty(loggedInUsername))
             {
-                Keuze screen = new Keuze();
+                int userId = dbHandler.GetUserIdByUsername(loggedInUsername);
+                Keuze screen = new Keuze(userId);
                 screen.Show();
             }
             else

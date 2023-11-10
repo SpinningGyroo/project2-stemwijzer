@@ -21,25 +21,25 @@
         /// </summary>
         public partial class Keuze : Window
         {
-        private DatabaseHandler dbHandler = new DatabaseHandler();
+        private DatabaseHandler dbHandler;
         private int currentStatementId = 1;
+        private int loggedInUserId;
         private Dictionary<string, int> partyValues = new Dictionary<string, int>();
-        private Dictionary<string, int> previousPartyValues;
 
-        public Keuze()
+        public Keuze(int loggedInUserId)
         {
             InitializeComponent();
+            dbHandler = new DatabaseHandler();
+            this.loggedInUserId = loggedInUserId;
             LoadStatement(currentStatementId);
 
             List<string> partyNames = dbHandler.GetAllPartyNames();
 
             partyValues = new Dictionary<string, int>();
-            previousPartyValues = new Dictionary<string, int>();
 
             foreach (string party in partyNames)
             {
                 partyValues[party] = 160;
-                previousPartyValues[party] = 160;
             }
         }
 
@@ -60,7 +60,8 @@
                     gridKeuze.Visibility = Visibility.Hidden;
                     gridConfirmed.Visibility = Visibility.Visible;
                 }
-            }
+
+        }
 
             private void ShowScores()
             {
@@ -94,24 +95,6 @@
                 }
             }
 
-        private void backAction(object sender, MouseButtonEventArgs e)
-        {
-            if (currentStatementId > 1)
-            {
-                // Create a copy of the party names
-                List<string> partyNames = new List<string>(partyValues.Keys);
-
-                // Revert partyValues to previousPartyValues
-                foreach (var party in partyNames)
-                {
-                    partyValues[party] = previousPartyValues[party];
-                }
-
-                currentStatementId--;
-                LoadStatement(currentStatementId);
-            }
-        }
-
         private void AdjustPartyValues(string opinion)
         {
             Dictionary<string, int> adjustments = new Dictionary<string, int>();
@@ -138,12 +121,13 @@
                         adjustments[party] = 0;
                     }
                 }
+                dbHandler.SavePartyValuesForStatement(currentStatementId, partyValues);
+                ShowScores();
             }
 
             // Update both partyValues and previousPartyValues
             foreach (var adjustment in adjustments)
             {
-                previousPartyValues[adjustment.Key] = partyValues[adjustment.Key];
                 partyValues[adjustment.Key] += adjustment.Value;
             }
 
@@ -154,5 +138,42 @@
             {
                 this.Close();
             }
+
+        private void resultaat_click(object sender, RoutedEventArgs e)
+        {
+            gridConfirmed.Visibility = Visibility.Hidden;
+            gridResult.Visibility = Visibility.Visible;
+
+            if (loggedInUserId > 0)
+            {
+                dbHandler.SaveUserScores(loggedInUserId, partyValues);
+                MessageBox.Show("Scores saved successfully.");
+            }
+            else
+            {
+                MessageBox.Show("Unable to retrieve user ID. Scores not saved.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
+
+        private void backToStart_click(object sender, MouseButtonEventArgs e)
+        {
+            ResetState();
+            currentStatementId = 1;
+            LoadStatement(currentStatementId);
+        }
+        private void ResetState()
+        {
+            partyValues.Clear();
+
+            List<string> partyNames = dbHandler.GetAllPartyNames();
+
+            foreach (string party in partyNames)
+            {
+                partyValues[party] = 160;
+            }
+
+            gridTooFast.Visibility = Visibility.Hidden;
+            gridKeuze.Visibility = Visibility.Visible;
+        }
+    }
     }

@@ -250,5 +250,157 @@ namespace project2.classes
             return partyNames;
         }
 
+        public Dictionary<string, int> GetPartyValuesForStatement(int statementID)
+        {
+            Dictionary<string, int> partyValues = new Dictionary<string, int>();
+
+            try
+            {
+                _connection.Open();
+                MySqlCommand command = new MySqlCommand("SELECT Party, Value FROM Party_Values WHERE StatementID = @statementID", _connection);
+                command.Parameters.AddWithValue("@statementID", statementID);
+                MySqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    string party = reader["Party"].ToString();
+                    int value = Convert.ToInt32(reader["Value"]);
+                    partyValues.Add(party, value);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("An error occurred: " + e.Message);
+            }
+            finally
+            {
+                _connection.Close();
+            }
+
+            return partyValues;
+        }
+
+        public void SavePartyValuesForStatement(int statementID, Dictionary<string, int> partyValues)
+        {
+            try
+            {
+                _connection.Open();
+
+                // First, delete existing values for the given statement ID
+                MySqlCommand deleteCommand = new MySqlCommand("DELETE FROM Party_Values WHERE StatementID = @statementID", _connection);
+                deleteCommand.Parameters.AddWithValue("@statementID", statementID);
+                deleteCommand.ExecuteNonQuery();
+
+                // Insert the new values
+                foreach (var partyValue in partyValues)
+                {
+                    MySqlCommand insertCommand = new MySqlCommand("INSERT INTO Party_Values (StatementID, Party, Value) VALUES (@statementID, @party, @value)", _connection);
+                    insertCommand.Parameters.AddWithValue("@statementID", statementID);
+                    insertCommand.Parameters.AddWithValue("@party", partyValue.Key);
+                    insertCommand.Parameters.AddWithValue("@value", partyValue.Value);
+                    insertCommand.ExecuteNonQuery();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("An error occurred: " + e.Message);
+            }
+            finally
+            {
+                _connection.Close();
+            }
+        }
+
+        public int GetUserIdByUsername(string username)
+        {
+            try
+            {
+                _connection.Open();
+                MySqlCommand command = new MySqlCommand("SELECT id FROM user WHERE username = @username", _connection);
+                command.Parameters.AddWithValue("@username", username);
+                object result = command.ExecuteScalar();
+
+                return result != null ? Convert.ToInt32(result) : 0;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("An error occurred: " + e.Message);
+                return 0;
+            }
+            finally
+            {
+                _connection.Close();
+            }
+        }
+        public void SaveUserScores(int userId, Dictionary<string, int> partyValues)
+        {
+            try
+            {
+                _connection.Open();
+
+                // Check if the user already has a row in the user_scores table
+                MySqlCommand checkCommand = new MySqlCommand("SELECT * FROM user_scores WHERE user_id = @user_id", _connection);
+                checkCommand.Parameters.AddWithValue("@user_id", userId);
+                object existingRow = checkCommand.ExecuteScalar();
+
+                if (existingRow != null)
+                {
+                    // User already has a row, update the existing row
+                    MySqlCommand updateCommand = new MySqlCommand(
+                        "UPDATE user_scores SET " +
+                        "VVD = @VVD, PVV = @PVV, CDA = @CDA, D66 = @D66, " +
+                        "GroenLinksPvda = @GroenLinksPvda, SP = @SP, Splinter = @Splinter, " +
+                        "SGP = @SGP, FVD = @FVD, JA21 = @JA21, Volt = @Volt, " +
+                        "Piratenpartij = @Piratenpartij, LP = @LP, BBB = @BBB, " +
+                        "Partij_voor_de_Dieren = @Partij_voor_de_Dieren, ChristenUnie = @ChristenUnie " +
+                        "WHERE user_id = @user_id", _connection);
+
+                    SetPartyValueParameters(updateCommand, partyValues);
+                    updateCommand.Parameters.AddWithValue("@user_id", userId);
+
+                    int rowsUpdated = updateCommand.ExecuteNonQuery();
+
+                    Console.WriteLine("Rows Updated: " + rowsUpdated);
+                }
+                else
+                {
+                    // User doesn't have a row, insert a new row
+                    MySqlCommand insertCommand = new MySqlCommand(
+                        "INSERT INTO user_scores (user_id, VVD, PVV, CDA, D66, " +
+                        "GroenLinksPvda, SP, Splinter, SGP, FVD, JA21, Volt, " +
+                        "Piratenpartij, LP, BBB, Partij_voor_de_Dieren, ChristenUnie) " +
+                        "VALUES (@user_id, @VVD, @PVV, @CDA, @D66, @GroenLinksPvda, @SP, @Splinter, " +
+                        "@SGP, @FVD, @JA21, @Volt, @Piratenpartij, @LP, @BBB, @Partij_voor_de_Dieren, @ChristenUnie)", _connection);
+
+                    SetPartyValueParameters(insertCommand, partyValues);
+                    insertCommand.Parameters.AddWithValue("@user_id", userId);
+
+                    int rowsInserted = insertCommand.ExecuteNonQuery();
+
+                    Console.WriteLine("Rows Inserted: " + rowsInserted);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("An error occurred: " + e.Message);
+            }
+            finally
+            {
+                _connection.Close();
+            }
+        }
+
+
+
+        private void SetPartyValueParameters(MySqlCommand command, Dictionary<string, int> partyValues)
+        {
+            foreach (var partyValue in partyValues)
+            {
+                command.Parameters.AddWithValue("@" + partyValue.Key, partyValue.Value);
+            }
+
+            command.Parameters.AddWithValue("@Partij_voor_de_Dieren", partyValues["Partij voor de Dieren"]);
+        }
+
     }
 }
