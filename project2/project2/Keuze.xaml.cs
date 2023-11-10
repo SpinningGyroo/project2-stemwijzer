@@ -63,18 +63,6 @@
 
         }
 
-            private void ShowScores()
-            {
-                StringBuilder scoreInfo = new StringBuilder("Party Scores:\n");
-
-                foreach (var party in partyValues)
-                {
-                    scoreInfo.AppendLine($"{party.Key}: {party.Value}");
-                }
-
-                MessageBox.Show(scoreInfo.ToString(), "Current Party Scores");
-            }
-
             private void oneens_Click(object sender, RoutedEventArgs e)
             {
                 if (currentStatementId < 17)
@@ -121,16 +109,12 @@
                         adjustments[party] = 0;
                     }
                 }
-                ShowScores();
             }
 
-            // Update both partyValues and previousPartyValues
             foreach (var adjustment in adjustments)
             {
                 partyValues[adjustment.Key] += adjustment.Value;
             }
-
-            ShowScores();
         }
 
         private void mainMenubtn(object sender, MouseButtonEventArgs e)
@@ -146,7 +130,6 @@
             if (loggedInUserId > 0)
             {
                 dbHandler.SaveUserScores(loggedInUserId, partyValues);
-                MessageBox.Show("Scores saved successfully.");
             }
             else
             {
