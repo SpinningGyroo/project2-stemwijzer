@@ -126,16 +126,53 @@
         {
             gridConfirmed.Visibility = Visibility.Hidden;
             gridResult.Visibility = Visibility.Visible;
+            dbHandler.SaveUserScores(loggedInUserId, partyValues);
 
-            if (loggedInUserId > 0)
+            DataTable resultData = dbHandler.GetTopPartyScoresForUser(loggedInUserId);
+
+
+            if (resultData.Rows.Count > 0)
             {
-                dbHandler.SaveUserScores(loggedInUserId, partyValues);
+                // Sort the DataTable by party_score in descending order
+                DataView dv = resultData.DefaultView;
+                dv.Sort = "party_score DESC";
+                DataTable sortedResult = dv.ToTable();
+
+                // Display the results in the UI or process them as needed
+                for (int i = 0; i < Math.Min(sortedResult.Rows.Count, 3); i++)
+                {
+                    DataRow row = sortedResult.Rows[i];
+                    string partyName = row["party_name"].ToString();
+                    int partyScore = Convert.ToInt32(row["party_score"]);
+
+                    // Assuming you have ProgressBar controls named topScore, midScore, and bottomScore
+                    // Update the progress bars based on the party scores
+                    switch (i)
+                    {
+                        case 0:
+                            topScore.Value = partyScore;
+                            topPartyName.Text = partyName;
+                            break;
+                        case 1:
+                            midScore.Value = partyScore;
+                            midPartyName.Text = partyName;
+                            break;
+                        case 2:
+                            bottomScore.Value = partyScore;
+                            bottomPartyName.Text = partyName;
+                            break;
+                    }
+                }
+
+                // Additional logic if you want to show or process other information
             }
             else
             {
-                MessageBox.Show("Unable to retrieve user ID. Scores not saved.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("No results found.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
+
+
 
         private void backToStart_click(object sender, MouseButtonEventArgs e)
         {
@@ -157,5 +194,6 @@
             gridTooFast.Visibility = Visibility.Hidden;
             gridKeuze.Visibility = Visibility.Visible;
         }
+
     }
     }

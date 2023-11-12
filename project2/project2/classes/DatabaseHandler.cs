@@ -356,8 +356,6 @@ namespace project2.classes
             }
         }
 
-
-
         private void SetPartyValueParameters(MySqlCommand command, Dictionary<string, int> partyValues)
         {
             foreach (var partyValue in partyValues)
@@ -367,6 +365,69 @@ namespace project2.classes
 
             command.Parameters.AddWithValue("@Partij_voor_de_Dieren", partyValues["Partij voor de Dieren"]);
         }
+
+        public DataTable GetTopPartyScoresForUser(int userId)
+        {
+            DataTable result = new DataTable();
+            try
+            {
+                _connection.Open();
+
+                MySqlCommand command = new MySqlCommand(
+                    "SELECT user_id, party_name, party_score " +
+                    "FROM (" +
+                    "    SELECT user_id, 'VVD' AS party_name, VVD AS party_score FROM user_scores " +
+                    "    UNION " +
+                    "    SELECT user_id, 'PVV' AS party_name, PVV AS party_score FROM user_scores " +
+                    "    UNION " +
+                    "    SELECT user_id, 'CDA' AS party_name, CDA AS party_score FROM user_scores " +
+                    "    UNION " +
+                    "    SELECT user_id, 'D66' AS party_name, D66 AS party_score FROM user_scores " +
+                    "    UNION " +
+                    "    SELECT user_id, 'GroenLinksPvda' AS party_name, GroenLinksPvda AS party_score FROM user_scores " +
+                    "    UNION " +
+                    "    SELECT user_id, 'SP' AS party_name, SP AS party_score FROM user_scores " +
+                    "    UNION " +
+                    "    SELECT user_id, 'Splinter' AS party_name, Splinter AS party_score FROM user_scores " +
+                    "    UNION " +
+                    "    SELECT user_id, 'SGP' AS party_name, SGP AS party_score FROM user_scores " +
+                    "    UNION " +
+                    "    SELECT user_id, 'FVD' AS party_name, FVD AS party_score FROM user_scores " +
+                    "    UNION " +
+                    "    SELECT user_id, 'JA21' AS party_name, JA21 AS party_score FROM user_scores " +
+                    "    UNION " +
+                    "    SELECT user_id, 'Volt' AS party_name, Volt AS party_score FROM user_scores " +
+                    "    UNION " +
+                    "    SELECT user_id, 'Piratenpartij' AS party_name, Piratenpartij AS party_score FROM user_scores " +
+                    "    UNION " +
+                    "    SELECT user_id, 'LP' AS party_name, LP AS party_score FROM user_scores " +
+                    "    UNION " +
+                    "    SELECT user_id, 'BBB' AS party_name, BBB AS party_score FROM user_scores " +
+                    "    UNION " +
+                    "    SELECT user_id, 'Partij_voor_de_Dieren' AS party_name, Partij_voor_de_Dieren AS party_score FROM user_scores " +
+                    "    UNION " +
+                    "    SELECT user_id, 'ChristenUnie' AS party_name, ChristenUnie AS party_score FROM user_scores " +
+                    ") AS all_parties " +
+                    "WHERE user_id = @userId AND party_score IS NOT NULL " +
+                    "ORDER BY party_score DESC " +
+                    "LIMIT 3", _connection);
+
+                command.Parameters.AddWithValue("@userId", userId);
+
+                MySqlDataReader reader = command.ExecuteReader();
+                result.Load(reader);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("An error occurred: " + e.Message);
+            }
+            finally
+            {
+                _connection.Close();
+            }
+            return result;
+        }
+
 
     }
 }
