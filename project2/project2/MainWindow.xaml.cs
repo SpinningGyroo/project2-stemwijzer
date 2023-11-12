@@ -172,22 +172,29 @@ namespace project2
 
             // All validations passed, proceed with registration.
             DatabaseHandler dbHandler = new DatabaseHandler();
-            dbHandler.RegisterUser(username, password, email);
+           
 
             // Optionally, you can show a message to indicate successful registration
 
-            txtUsernameCreate.Text = "";
-            txtPasswordCreate.Password = "";
-            txtEmailCreate.Text = "";
+            if (DatabaseHandler.UsernameExists(username))
+            {
+                System.Windows.MessageBox.Show("Username already exists. Please choose a different username.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                txtUsernameCreate.Text = "";
+                txtPasswordCreate.Password = "";
+                txtEmailCreate.Text = "";
+            }
 
             if (!DatabaseHandler.UsernameExists(username))
             {
-                MessageBox.Show("User registered successfully.");
 
+                dbHandler.RegisterUser(username, password, email);
+
+                txtUsernameCreate.Text = "";
+                txtPasswordCreate.Password = "";
+                txtEmailCreate.Text = "";
                 SignUp.Visibility = Visibility.Hidden;
                 MainWindowBorder.Visibility = Visibility.Visible;
             }
-            
 
         }
 

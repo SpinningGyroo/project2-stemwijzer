@@ -18,12 +18,6 @@ namespace project2.classes
         {
             try
             {
-                // Check if the username already exists
-                if (UsernameExists(username))
-                {
-                    System.Windows.MessageBox.Show("Username already exists. Please choose a different username.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
 
                 _connection.Open();
                 MySqlCommand command = new MySqlCommand("INSERT INTO user (username, password, email, profile_image) VALUES (@username, @password, @email, @profileImage)", _connection);
