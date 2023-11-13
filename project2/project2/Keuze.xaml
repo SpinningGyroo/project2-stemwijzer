@@ -187,7 +187,7 @@
                         <ImageBrush ImageSource="images/bluecircle.png"/>
                     </Rectangle.Fill>
                 </Rectangle>
-                <ProgressBar x:Name="bottomScore" Height="20" Margin="0,5,0,0" Maximum="320"/>
+                <ProgressBar x:Name="bottomScore" Height="20" Margin="0,5,0,0" Maximum="100"/>
                 <TextBlock x:Name="bottomPartyName" Margin="0,5,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </StackPanel>
 
@@ -197,7 +197,7 @@
                         <ImageBrush ImageSource="images/bluecircle.png"/>
                     </Rectangle.Fill>
                 </Rectangle>
-                <ProgressBar x:Name="midScore" Height="20" Margin="0,5,0,0" Maximum="320"/>
+                <ProgressBar x:Name="midScore" Height="20" Margin="0,5,0,0" Maximum="100"/>
                 <TextBlock x:Name="midPartyName" Margin="0,5,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </StackPanel>
 
@@ -207,7 +207,7 @@
                         <ImageBrush ImageSource="images/bluecircle.png"/>
                     </Rectangle.Fill>
                 </Rectangle>
-                <ProgressBar x:Name="topScore" Height="20" Margin="0,5,0,0" Maximum="320"/>
+                <ProgressBar x:Name="topScore" Height="20" Margin="0,5,0,0" Maximum="100"/>
                 <TextBlock x:Name="topPartyName" Margin="0,5,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </StackPanel>
 

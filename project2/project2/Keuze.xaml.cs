@@ -182,22 +182,25 @@ namespace project2
                         imageBrush.ImageSource = new BitmapImage(new Uri("images/default.png", UriKind.Relative));
                     }
 
-                    // Set the image brush based on the score
+                    // Calculate percentage
+                    double percentage = CalculatePercentage(partyScore, 320); // Assuming 320 is the maximum score
+
+                    // Set the image brush and percentage based on the score
                     switch (i)
                     {
                         case 0:
-                            topScore.Value = partyScore;
-                            topPartyName.Text = partyName;
+                            topScore.Value = percentage;
+                            topPartyName.Text = $"{partyName}:  {percentage}%";
                             topCircle.Fill = imageBrush;
                             break;
                         case 1:
-                            midScore.Value = partyScore;
-                            midPartyName.Text = partyName;
+                            midScore.Value = percentage;
+                            midPartyName.Text = $"{partyName}:  {percentage}%)";
                             midCircle.Fill = imageBrush;
                             break;
                         case 2:
-                            bottomScore.Value = partyScore;
-                            bottomPartyName.Text = partyName;
+                            bottomScore.Value = percentage;
+                            bottomPartyName.Text = $"{partyName}:  {percentage}%";
                             bottomCircle.Fill = imageBrush;
                             break;
                     }
@@ -210,6 +213,12 @@ namespace project2
                 MessageBox.Show("No results found.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
+
+        private double CalculatePercentage(int score, int maxScore)
+        {
+            return (score / (double)maxScore) * 100.0;
+        }
+
 
 
 
