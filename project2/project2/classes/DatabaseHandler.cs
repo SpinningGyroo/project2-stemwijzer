@@ -318,7 +318,7 @@ namespace project2.classes
                         "GroenLinksPvda = @GroenLinksPvda, SP = @SP, Splinter = @Splinter, " +
                         "SGP = @SGP, FVD = @FVD, JA21 = @JA21, Volt = @Volt, " +
                         "Piratenpartij = @Piratenpartij, LP = @LP, BBB = @BBB, " +
-                        "Partij_voor_de_Dieren = @Partij_voor_de_Dieren, ChristenUnie = @ChristenUnie " +
+                        "PvdD = @PvdD, ChristenUnie = @ChristenUnie " +
                         "WHERE user_id = @user_id", _connection);
 
                     SetPartyValueParameters(updateCommand, partyValues);
@@ -334,9 +334,9 @@ namespace project2.classes
                     MySqlCommand insertCommand = new MySqlCommand(
                         "INSERT INTO user_scores (user_id, VVD, PVV, CDA, D66, " +
                         "GroenLinksPvda, SP, Splinter, SGP, FVD, JA21, Volt, " +
-                        "Piratenpartij, LP, BBB, Partij_voor_de_Dieren, ChristenUnie) " +
+                        "Piratenpartij, LP, BBB, PvdD, ChristenUnie) " +
                         "VALUES (@user_id, @VVD, @PVV, @CDA, @D66, @GroenLinksPvda, @SP, @Splinter, " +
-                        "@SGP, @FVD, @JA21, @Volt, @Piratenpartij, @LP, @BBB, @Partij_voor_de_Dieren, @ChristenUnie)", _connection);
+                        "@SGP, @FVD, @JA21, @Volt, @Piratenpartij, @LP, @BBB, @PvdD, @ChristenUnie)", _connection);
 
                     SetPartyValueParameters(insertCommand, partyValues);
                     insertCommand.Parameters.AddWithValue("@user_id", userId);
@@ -362,8 +362,6 @@ namespace project2.classes
             {
                 command.Parameters.AddWithValue("@" + partyValue.Key, partyValue.Value);
             }
-
-            command.Parameters.AddWithValue("@Partij_voor_de_Dieren", partyValues["Partij voor de Dieren"]);
         }
 
         public DataTable GetTopPartyScoresForUser(int userId)
@@ -404,7 +402,7 @@ namespace project2.classes
                     "    UNION " +
                     "    SELECT user_id, 'BBB' AS party_name, BBB AS party_score FROM user_scores " +
                     "    UNION " +
-                    "    SELECT user_id, 'Partij_voor_de_Dieren' AS party_name, Partij_voor_de_Dieren AS party_score FROM user_scores " +
+                    "    SELECT user_id, 'PvdD' AS party_name, PvdD AS party_score FROM user_scores " +
                     "    UNION " +
                     "    SELECT user_id, 'ChristenUnie' AS party_name, ChristenUnie AS party_score FROM user_scores " +
                     ") AS all_parties " +

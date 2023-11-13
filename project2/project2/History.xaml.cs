@@ -121,6 +121,11 @@ namespace project2
         {
             return (score / (double)maxScore) * 100.0;
         }
+
+        private void historyMainMenu_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
 

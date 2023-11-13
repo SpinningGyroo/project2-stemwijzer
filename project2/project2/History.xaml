@@ -73,7 +73,7 @@
             </Grid>
             
             <Viewbox Stretch="Uniform" Grid.Row="8" Grid.Column="10">
-                <Button Background="Red" BorderBrush="Red" Foreground="White">main menu</Button>
+                <Button x:Name="historyMainMenu" Click="historyMainMenu_Click" Background="Red" BorderBrush="Red" Foreground="White">main menu</Button>
             </Viewbox>
 
         </Grid>
