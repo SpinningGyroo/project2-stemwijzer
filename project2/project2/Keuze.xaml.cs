@@ -12,9 +12,9 @@
     using System.Windows.Media;
     using System.Windows.Media.Imaging;
     using System.Windows.Shapes;
-    using project2.classes;
-
-    namespace project2
+using System.Windows.Threading;
+using project2.classes;
+namespace project2
     {
         /// <summary>
         /// Interaction logic for Keuze.xaml
@@ -25,6 +25,8 @@
         private int currentStatementId = 1;
         private int loggedInUserId;
         private Dictionary<string, int> partyValues = new Dictionary<string, int>();
+        private DispatcherTimer timer;
+        int timePassed = 0;
 
         public Keuze(int loggedInUserId)
         {
@@ -41,25 +43,42 @@
             {
                 partyValues[party] = 160;
             }
+
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += Timer_Tick;
+            timer.Start();
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            timePassed++;
         }
 
         private void LoadStatement(int statementId)
             {
                 DataTable statementData = dbHandler.GetStatementById(statementId);
 
-                if (statementData.Rows.Count > 0)
-                {
-                    DataRow statementRow = statementData.Rows[0];
-                    stellingTitel.Text = statementRow["titel"].ToString();
-                    stellingTB.Text = statementRow["stelling"].ToString();
-                    pageCounter.Text = $"{currentStatementId}/16";
-                }
-                else
-                {
-                    // Handle case where no statement was found with the given ID.
+            if (statementData.Rows.Count > 0)
+            {
+                DataRow statementRow = statementData.Rows[0];
+                stellingTitel.Text = statementRow["titel"].ToString();
+                stellingTB.Text = statementRow["stelling"].ToString();
+                pageCounter.Text = $"{currentStatementId}/16";
+            }
+            else
+            {
+                if (timePassed >= 90)
+                { 
                     gridKeuze.Visibility = Visibility.Hidden;
                     gridConfirmed.Visibility = Visibility.Visible;
                 }
+                else
+                {
+                    gridKeuze.Visibility = Visibility.Hidden;
+                    gridTooFast.Visibility = Visibility.Visible;
+                }
+            }
 
         }
 
@@ -133,20 +152,16 @@
 
             if (resultData.Rows.Count > 0)
             {
-                // Sort the DataTable by party_score in descending order
                 DataView dv = resultData.DefaultView;
                 dv.Sort = "party_score DESC";
                 DataTable sortedResult = dv.ToTable();
 
-                // Display the results in the UI or process them as needed
                 for (int i = 0; i < Math.Min(sortedResult.Rows.Count, 3); i++)
                 {
                     DataRow row = sortedResult.Rows[i];
                     string partyName = row["party_name"].ToString();
                     int partyScore = Convert.ToInt32(row["party_score"]);
 
-                    // Assuming you have ProgressBar controls named topScore, midScore, and bottomScore
-                    // Update the progress bars based on the party scores
                     switch (i)
                     {
                         case 0:
