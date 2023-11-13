@@ -181,7 +181,7 @@
                 <RowDefinition Height="10px"/>
             </Grid.RowDefinitions>
 
-            <StackPanel Grid.Row="3" Grid.Column="5">
+            <StackPanel Grid.Row="3" Grid.Column="5" Grid.RowSpan="3">
                 <Rectangle Height="80" Width="100">
                     <Rectangle.Fill>
                         <ImageBrush ImageSource="images/bluecircle.png"/>
@@ -191,7 +191,7 @@
                 <TextBlock x:Name="bottomPartyName" Margin="0,5,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </StackPanel>
 
-            <StackPanel Grid.Row="3" Grid.Column="1">
+            <StackPanel Grid.Row="3" Grid.Column="1" Grid.RowSpan="3">
                 <Rectangle Height="80" Width="100">
                     <Rectangle.Fill>
                         <ImageBrush ImageSource="images/bluecircle.png"/>
@@ -201,7 +201,7 @@
                 <TextBlock x:Name="midPartyName" Margin="0,5,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </StackPanel>
 
-            <StackPanel Grid.Row="1" Grid.Column="3">
+            <StackPanel Grid.Row="1" Grid.Column="3" Grid.RowSpan="3">
                 <Rectangle Height="80" Width="100">
                     <Rectangle.Fill>
                         <ImageBrush ImageSource="images/bluecircle.png"/>
