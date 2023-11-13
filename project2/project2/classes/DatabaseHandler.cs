@@ -458,5 +458,27 @@ namespace project2.classes
 
             return null;
         }
+
+        public int GetPartyScoreForUser(int userId, string partyName)
+        {
+            try
+            {
+                _connection.Open();
+                MySqlCommand command = new MySqlCommand($"SELECT {partyName} FROM user_scores WHERE user_id = @userId", _connection);
+                command.Parameters.AddWithValue("@userId", userId);
+                object result = command.ExecuteScalar();
+
+                return result != null ? Convert.ToInt32(result) : 0;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("An error occurred: " + e.Message);
+                return 0;
+            }
+            finally
+            {
+                _connection.Close();
+            }
+        }
     }
 }

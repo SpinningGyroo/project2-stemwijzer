@@ -139,7 +139,10 @@ namespace project2
 
         private void HistoryClick(object sender, RoutedEventArgs e)
         {
-            History screen = new History();
+
+            DatabaseHandler dbHandler = new DatabaseHandler();
+            int userId = dbHandler.GetUserIdByUsername(loggedInUsername);
+            History screen = new History(userId);
             screen.Show();
         }
 

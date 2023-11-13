@@ -21,7 +21,7 @@
             <RowDefinition Height="0.1*"/>
         </Grid.RowDefinitions>
 
-        <Grid x:Name="gridKeuze" Grid.Column="1" Grid.Row="1" Visibility="Visible">
+        <Grid x:Name="gridKeuze" Grid.Column="1" Grid.Row="1" Visibility="Hidden">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.1*"/>
                 <ColumnDefinition Width="0.5*"/>
@@ -156,7 +156,7 @@
 
         </Grid>
 
-        <Grid Grid.Column="1" Grid.Row="1" x:Name="gridResult" Visibility="Hidden">
+        <Grid Grid.Column="1" Grid.Row="1" x:Name="gridResult" Visibility="Visible">
             <Grid.Background>
                 <ImageBrush ImageSource="images/yippie.png"/>
             </Grid.Background>
