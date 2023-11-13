@@ -70,11 +70,13 @@ namespace project2
             {
                 if (timePassed >= 90)
                 { 
+                    timer.Stop();
                     gridKeuze.Visibility = Visibility.Hidden;
                     gridConfirmed.Visibility = Visibility.Visible;
                 }
                 else
                 {
+                    timer.Stop();
                     gridKeuze.Visibility = Visibility.Hidden;
                     gridTooFast.Visibility = Visibility.Visible;
                 }
@@ -193,6 +195,8 @@ namespace project2
         {
             ResetState();
             currentStatementId = 1;
+            timePassed = 0;
+            timer.Start();
             LoadStatement(currentStatementId);
         }
         private void ResetState()
