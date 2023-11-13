@@ -1,21 +1,22 @@
-﻿    using System;
-    using System.Collections.Generic;
-    using System.Data;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Data;
-    using System.Windows.Documents;
-    using System.Windows.Input;
-    using System.Windows.Media;
-    using System.Windows.Media.Imaging;
-    using System.Windows.Shapes;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 using System.Windows.Threading;
 using project2.classes;
+using System.IO;
 namespace project2
-    {
+{
         /// <summary>
         /// Interaction logic for Keuze.xaml
         /// </summary>
@@ -68,7 +69,7 @@ namespace project2
             }
             else
             {
-                if (timePassed >= 90)
+                if (timePassed >= 1)
                 { 
                     timer.Stop();
                     gridKeuze.Visibility = Visibility.Hidden;
@@ -151,7 +152,6 @@ namespace project2
 
             DataTable resultData = dbHandler.GetTopPartyScoresForUser(loggedInUserId);
 
-
             if (resultData.Rows.Count > 0)
             {
                 DataView dv = resultData.DefaultView;
@@ -164,19 +164,41 @@ namespace project2
                     string partyName = row["party_name"].ToString();
                     int partyScore = Convert.ToInt32(row["party_score"]);
 
+                    // Use the GetPartyLogoByName method to retrieve partij_logo data
+                    byte[] partyLogoData = dbHandler.GetPartyLogoByName(partyName);
+
+                    ImageBrush imageBrush = new ImageBrush();
+                    if (partyLogoData != null && partyLogoData.Length > 0)
+                    {
+                        BitmapImage bitmapImage = new BitmapImage();
+                        bitmapImage.BeginInit();
+                        bitmapImage.StreamSource = new MemoryStream(partyLogoData);
+                        bitmapImage.EndInit();
+                        imageBrush.ImageSource = bitmapImage;
+                    }
+                    else
+                    {
+                        // Provide a default image source if partij_logo data is not available
+                        imageBrush.ImageSource = new BitmapImage(new Uri("images/default.png", UriKind.Relative));
+                    }
+
+                    // Set the image brush based on the score
                     switch (i)
                     {
                         case 0:
                             topScore.Value = partyScore;
                             topPartyName.Text = partyName;
+                            topCircle.Fill = imageBrush;
                             break;
                         case 1:
                             midScore.Value = partyScore;
                             midPartyName.Text = partyName;
+                            midCircle.Fill = imageBrush;
                             break;
                         case 2:
                             bottomScore.Value = partyScore;
                             bottomPartyName.Text = partyName;
+                            bottomCircle.Fill = imageBrush;
                             break;
                     }
                 }

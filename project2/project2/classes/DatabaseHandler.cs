@@ -428,6 +428,35 @@ namespace project2.classes
             return result;
         }
 
+        public byte[] GetPartyLogoByName(string partyName)
+        {
+            try
+            {
+                _connection.Open();
+                MySqlCommand command = new MySqlCommand("SELECT partij_logo FROM partijen WHERE naam = @partyName", _connection);
+                command.Parameters.AddWithValue("@partyName", partyName);
 
+                using (MySqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        if (!reader.IsDBNull(reader.GetOrdinal("partij_logo")))
+                        {
+                            return (byte[])reader["partij_logo"];
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("An error occurred: " + e.Message);
+            }
+            finally
+            {
+                _connection.Close();
+            }
+
+            return null;
+        }
     }
 }
