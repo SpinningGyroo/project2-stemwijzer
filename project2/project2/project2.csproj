@@ -175,6 +175,9 @@
     <Content Include="images\arrowback.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="images\background.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="images\bluecircle.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

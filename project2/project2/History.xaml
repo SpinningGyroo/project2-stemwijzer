@@ -18,7 +18,11 @@
             <RowDefinition Height="0.1*"/>
         </Grid.RowDefinitions>
 
-        <Grid x:Name="redGrid" Grid.Row="1" Grid.Column="1" Background="Red">
+        <Grid.Background>
+            <ImageBrush ImageSource="images/background.jpg"/>
+        </Grid.Background>
+
+        <Grid x:Name="redGrid" Grid.Row="1" Grid.Column="1" Background="#202123">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="0.5*"/>
@@ -44,7 +48,7 @@
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
 
-            <Grid x:Name="historySub" Grid.Column="1" Grid.Row="1" Grid.RowSpan="7" Grid.ColumnSpan="9" Background="#0057FF" Panel.ZIndex = "1">
+            <Grid x:Name="historySub" Grid.Column="1" Grid.Row="1" Grid.RowSpan="7" Grid.ColumnSpan="9" Background="#454654" Panel.ZIndex = "1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.2*"/>
                     <ColumnDefinition Width="1*"/>
@@ -73,7 +77,7 @@
             </Grid>
             
             <Viewbox Stretch="Uniform" Grid.Row="8" Grid.Column="10">
-                <Button x:Name="historyMainMenu" Click="historyMainMenu_Click" Background="Red" BorderBrush="Red" Foreground="White">main menu</Button>
+                <Button x:Name="historyMainMenu" Click="historyMainMenu_Click" Background="#202123" BorderBrush="#202123" Foreground="White">→</Button>
             </Viewbox>
 
         </Grid>

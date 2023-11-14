@@ -9,6 +9,7 @@
 //------------------------------------------------------------------------------
 
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/arrowback.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/background.jpg")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/bluecircle.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/yippie.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("radialprogressbar/xamlradialprogressbar.dll")]

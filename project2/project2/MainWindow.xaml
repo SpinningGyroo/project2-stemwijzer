@@ -7,7 +7,10 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.Background>
+            <ImageBrush ImageSource="images/background.jpg"/>
+        </Grid.Background>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
@@ -26,12 +29,12 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="0.2*"/>
         </Grid.RowDefinitions>
-        <Border Background="Yellow" Grid.Column="5" Grid.Row="4" BorderBrush="Black" BorderThickness="1,0,1,1">
-        <Grid >
+        <Border Background="White" Grid.Column="5" Grid.Row="4" BorderBrush="Black" BorderThickness="1,0,2,1">
+            <Grid >
 
-        </Grid>
+            </Grid>
         </Border>
-        <Border Grid.Row="1" Grid.RowSpan="3" Grid.Column="2" Grid.ColumnSpan="4" Background="Yellow" BorderBrush="Black" BorderThickness="1,1,1,0" CornerRadius="30,30,0,30">
+        <Border Grid.Row="1" Grid.RowSpan="3" Grid.Column="2" Grid.ColumnSpan="4" Background="White" BorderBrush="Black" BorderThickness="2,2,2,0" CornerRadius="30,30,0,30">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
@@ -46,10 +49,24 @@
                     <RowDefinition Height="0.2*"/>
                 </Grid.RowDefinitions>
                 <Viewbox HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1">
-                    <TextBlock>Stemwijzer</TextBlock>
+                    <TextBlock FontWeight="Bold">StemWijzer</TextBlock>
                 </Viewbox>
                 <Viewbox Stretch="Fill" Grid.Row="2" Grid.Column="1">
-                    <Button Background="#0057FF" FontSize="15" BorderBrush="Black" Foreground="White" Click="startClick">START</Button>
+                    <Button Content="Start" Width="100" Height="40" FontSize="16" Click="startClick" >
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="15"/>
+                            </Style>
+                        </Button.Resources>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#454654"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="BorderBrush" Value="#202123"/>
+                                <Setter Property="BorderThickness" Value="2"/>
+                            </Style>
+                        </Button.Style>
+                    </Button>
                 </Viewbox>
             </Grid>
         </Border>
@@ -68,7 +85,7 @@
             Grid.RowSpan="2" 
             Grid.Column="3" 
             Grid.ColumnSpan="3" 
-            Background="#0057FF"  
+            Background="#454654"  
             BorderBrush="Black" 
             BorderThickness="1,1,1,1" 
             CornerRadius="0,30,30,0">
@@ -94,7 +111,7 @@
                 </Grid.RowDefinitions>
 
                 <Viewbox Stretch="Uniform" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="4">
-                    <Button x:Name="btnCreateUser" FontSize="60" FontWeight="Bold" Foreground="White" Background="#0057FF" BorderBrush="#0057FF" Click="btnCreateUser_Click">create user</Button>
+                    <Button x:Name="btnCreateUser" FontSize="60" FontWeight="Bold" Foreground="White" Background="#454654" BorderBrush="#454654" Click="btnCreateUser_Click">create user</Button>
                 </Viewbox>
                 <Viewbox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left">
                     <TextBlock Foreground="White">username:</TextBlock>
@@ -107,18 +124,18 @@
                 </Viewbox>
 
                 <Viewbox Stretch="Fill" Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="2">
-                    <PasswordBox x:Name="txtPasswordCreate" FontSize="8" Width="80" BorderBrush="#0057FF"></PasswordBox>
+                    <PasswordBox x:Name="txtPasswordCreate" FontSize="8" Width="80" BorderBrush="#454654"></PasswordBox>
                 </Viewbox>
 
                 <Viewbox Stretch="Fill" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2">
-                    <TextBox x:Name="txtUsernameCreate" Width="80" FontSize="8" BorderBrush="#0057FF"></TextBox>
+                    <TextBox x:Name="txtUsernameCreate" Width="80" FontSize="8" BorderBrush="#454654"></TextBox>
                 </Viewbox>
                 <Viewbox Stretch="Fill" Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="2">
-                    <TextBox x:Name="txtEmailCreate" Width="80" FontSize="8" BorderBrush="#0057FF"></TextBox>
+                    <TextBox x:Name="txtEmailCreate" Width="80" FontSize="8" BorderBrush="#454654"></TextBox>
                 </Viewbox>
 
                 <Viewbox HorizontalAlignment="Right" Stretch="Fill" Grid.Row="4" Grid.Column="1">
-                    <Button x:Name="btnGoBack" Click="GoBackClick" Foreground="White" Background="#0057FF" BorderBrush="#0057FF" FontSize="50">←</Button>
+                    <Button x:Name="btnGoBack" Click="GoBackClick" Foreground="White" Background="#454654" BorderBrush="#454654" FontSize="50">←</Button>
                 </Viewbox>
 
             </Grid>
@@ -136,7 +153,7 @@
             Grid.RowSpan="2" 
             Grid.Column="3" 
             Grid.ColumnSpan="3" 
-            Background="#0057FF"  
+            Background="#454654"  
             BorderBrush="Black" 
             BorderThickness="1,1,1,1" 
             CornerRadius="0,30,30,0">
@@ -166,16 +183,16 @@
                     <TextBlock Foreground="White">password:</TextBlock>
                 </Viewbox>
                 <Viewbox HorizontalAlignment="Right" Stretch="Uniform" Grid.Row="3" Grid.Column="2">
-                    <Button x:Name="btnLogin" Click="btnLogin_Click" Foreground="White" Background="#0057FF" BorderBrush="#0057FF">log in</Button>
+                    <Button x:Name="btnLogin" Click="btnLogin_Click" Foreground="White" Background="#454654" BorderBrush="#454654">log in</Button>
                 </Viewbox>
                 <Viewbox Stretch="Fill" Grid.Row="1" Grid.Column="2">
-                    <TextBox x:Name="txtUsername" Width="80" FontSize="8" BorderBrush="#0057FF"></TextBox>
+                    <TextBox x:Name="txtUsername" Width="80" FontSize="8" BorderBrush="#454654"></TextBox>
                 </Viewbox>
                 <Viewbox Stretch="Fill" Grid.Row="2" Grid.Column="2">
-                    <PasswordBox x:Name="txtPassword" FontSize="8" Width="80" BorderBrush="#0057FF"></PasswordBox>
+                    <PasswordBox x:Name="txtPassword" FontSize="8" Width="80" BorderBrush="#454654"></PasswordBox>
                 </Viewbox>
                 <Viewbox Stretch="Uniform" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2">
-                    <Button x:Name="btnSignup" FontSize="60" FontWeight="Bold" Foreground="White" Background="#0057FF" BorderBrush="#0057FF" Click="signupClick" Content="Register"/>
+                    <Button x:Name="btnSignup" FontSize="60" FontWeight="Bold" Foreground="White" Background="#454654" BorderBrush="#454654" Click="signupClick" Content="Register"/>
                 </Viewbox>
 
 
@@ -192,9 +209,9 @@
             Grid.RowSpan="2" 
             Grid.Column="3" 
             Grid.ColumnSpan="3" 
-            Background="#0057FF"  
+            Background="#454654"  
             BorderBrush="Black" 
-            BorderThickness="1,1,1,1" 
+            BorderThickness="0,2,2,2" 
             CornerRadius="0,30,30,0">
             <Grid 
                 x:Name="gridLoggedIn"
@@ -221,16 +238,17 @@
                     Grid.Row="2"
                     Grid.Column="3"
                     Grid.ColumnSpan="2"
+                    HorizontalAlignment="Left" 
+                    Margin="59,0,0,0" 
+                    Width="83"
                     >
-                    <Button
-                     Foreground="White" 
-                     Background="#0057FF" 
-                     BorderBrush="#0057FF"
-                     FontSize="20"
-                     HorizontalAlignment="Left"
-                     Click="HistoryClick"
-                    >
-                        History
+                    <Button Foreground="White" Background="#454654" BorderBrush="#202123" FontSize="11" HorizontalAlignment="Right" Click="HistoryClick">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                        </Button.Resources>
+                        Full result
                     </Button>
                 </Viewbox>
 
@@ -241,11 +259,11 @@
                     >
                     <Button
                      Foreground="White" 
-                     Background="#0057FF" 
-                     BorderBrush="#0057FF"
+                     Background="#454654" 
+                     BorderBrush="#454654"
                      FontSize="8"
                      HorizontalAlignment="Right"
-                     Click="logoutClick"
+                     Click="logoutClick" Height="18" Width="34"
                     >
                         Log out
                     </Button>
@@ -255,16 +273,25 @@
                     Grid.Row="1"
                     Grid.Column="3"
                     Grid.ColumnSpan="1"
+                    HorizontalAlignment="Left"
                     >
                     <Button
                      x:Name="btnUploadImage"
                      Foreground="White" 
-                     Background="#0057FF" 
-                     BorderBrush="#0057FF"
+                     Background="#454654" 
+                     BorderBrush="#454654"
                      FontSize="8"
-                     HorizontalAlignment="Right"
-                     Click="btnUploadImage_Click"
+                     HorizontalAlignment="Left"
+                     Click="btnUploadImage_Click" RenderTransformOrigin="0.5,0.5" Width="14"
                     >
+                        <Button.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="-1"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Button.RenderTransform>
                         ✎
                     </Button>
                 </Viewbox>
@@ -278,7 +305,7 @@
 
 
 
-        <Border Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" Grid.RowSpan="4" Background="Red"  BorderBrush="Black" BorderThickness="1,1,1,1" CornerRadius="30,30,0,30">
+        <Border Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" Grid.RowSpan="4" Background="#202123"  BorderBrush="Black" BorderThickness="1,1,1,1" CornerRadius="30,30,0,30">
             <Grid Name="gridPartijen">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.7*"/>
