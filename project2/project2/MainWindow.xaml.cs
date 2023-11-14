@@ -314,6 +314,7 @@ namespace project2
         {
             LoggedIn.Visibility = Visibility.Hidden;
             MainWindowBorder.Visibility = Visibility.Visible;
+            loggedInUsername = null;
         }
 
         private void startClick(object sender, RoutedEventArgs e)

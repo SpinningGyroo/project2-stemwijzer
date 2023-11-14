@@ -148,21 +148,28 @@
 
                 <Viewbox Grid.ColumnSpan="3">
                     <StackPanel>
-                        <TextBlock FontSize="10" TextAlignment="Center">Stemwijzer succesvol ingevuld</TextBlock>
-                        <TextBlock FontSize="4" TextAlignment="Center">Je kunt je antwoorden nog aanpassen!</TextBlock>
+                        <TextBlock FontSize="10" TextAlignment="Center" FontWeight="Bold">StemWijzer succesvol ingevuld</TextBlock>
+
                     </StackPanel>
                 </Viewbox>
 
-                <Border Grid.Row="3" Grid.Column="1"
-                    BorderThickness="10,10,10,10" Margin="0" 
-                            CornerRadius="10,10,10,10" BorderBrush="#0057FF">
-                    <Grid Background="#0057FF" Margin="-2">
-                        <Viewbox Margin="0">
-                            <Button FontSize="0.4" Background="#0057FF" Click="resultaat_click" Foreground="White" BorderThickness="0" Width="5">bekijk resultaat</Button>
-                        </Viewbox>
-                    </Grid>
-                </Border>
-
+                <Viewbox Grid.Column="1" Grid.Row="3">
+                    <Button Content="Bekijk resultaat" Width="100" Height="40" FontSize="12" Click="resultaat_click" >
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="15"/>
+                            </Style>
+                        </Button.Resources>
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#454654"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="BorderBrush" Value="#202123"/>
+                                <Setter Property="BorderThickness" Value="2"/>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </Viewbox>
             </Grid>
 
         </Grid>
@@ -224,8 +231,8 @@
                 <TextBlock x:Name="topPartyName" Margin="0,5,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </StackPanel>
 
-            <Viewbox Grid.Row="3" Grid.Column="3">
-                <TextBlock MouseDown="mainMenubtn">main menu</TextBlock>
+            <Viewbox Grid.Row="5" Grid.Column="3">
+                <TextBlock MouseDown="mainMenubtn">⌂</TextBlock>
             </Viewbox>
 
         </Grid>

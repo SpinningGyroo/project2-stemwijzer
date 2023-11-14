@@ -69,7 +69,7 @@ namespace project2
             }
             else
             {
-                if (timePassed >= 90)
+                if (timePassed >= 1)
                 { 
                     timer.Stop();
                     gridKeuze.Visibility = Visibility.Hidden;
