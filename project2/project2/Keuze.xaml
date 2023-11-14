@@ -129,7 +129,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="0.1*"/>
             </Grid.RowDefinitions>
-            
+
 
             <Grid Grid.Row="1" Grid.Column="2">
 
@@ -157,9 +157,9 @@
                     BorderThickness="10,10,10,10" Margin="0" 
                             CornerRadius="10,10,10,10" BorderBrush="#0057FF">
                     <Grid Background="#0057FF" Margin="-2">
-                    <Viewbox Margin="0">
-                        <Button FontSize="0.4" Background="#0057FF" Click="resultaat_click" Foreground="White" BorderThickness="0" Width="5">bekijk resultaat</Button>
-                    </Viewbox>
+                        <Viewbox Margin="0">
+                            <Button FontSize="0.4" Background="#0057FF" Click="resultaat_click" Foreground="White" BorderThickness="0" Width="5">bekijk resultaat</Button>
+                        </Viewbox>
                     </Grid>
                 </Border>
 
@@ -167,11 +167,13 @@
 
         </Grid>
 
-        <Grid Grid.Column="1" Grid.Row="1" x:Name="gridResult" Visibility="Hidden">
+        <Grid Grid.RowSpan="3" Grid.ColumnSpan="3" x:Name="gridYippie" Visibility="Hidden">
             <Grid.Background>
                 <ImageBrush ImageSource="images/yippie.png"/>
             </Grid.Background>
-
+        </Grid>
+        
+        <Grid Grid.Column="1" Grid.Row="1" x:Name="gridResult" Visibility="Hidden" Background="Transparent">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="10px"/>

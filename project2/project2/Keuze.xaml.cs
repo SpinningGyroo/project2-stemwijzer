@@ -148,6 +148,7 @@ namespace project2
         {
             gridConfirmed.Visibility = Visibility.Hidden;
             gridResult.Visibility = Visibility.Visible;
+            gridYippie.Visibility = Visibility.Visible;
             dbHandler.SaveUserScores(loggedInUserId, partyValues);
 
             DataTable resultData = dbHandler.GetTopPartyScoresForUser(loggedInUserId);

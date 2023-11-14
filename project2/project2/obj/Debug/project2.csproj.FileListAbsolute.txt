@@ -125,3 +125,4 @@ C:\Users\mrluu\Documents\GitHub\project2-stemwijzer\project2\project2\bin\Debug\
 C:\Users\mrluu\Documents\GitHub\project2-stemwijzer\project2\project2\bin\Debug\XamlRadialProgressBar.dll
 C:\Users\mrluu\Documents\GitHub\project2-stemwijzer\project2\project2\bin\Debug\XamlRadialProgressBar.DotNet.dll
 C:\Users\mrluu\Documents\GitHub\project2-stemwijzer\project2\project2\bin\Debug\images\background.jpg
+C:\Users\herec\Documents\GitHub\project2-stemwijzer\project2\project2\bin\Debug\images\background.jpg
