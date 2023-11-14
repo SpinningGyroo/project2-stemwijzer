@@ -75,9 +75,9 @@
 
 
             </Grid>
-            
-            <Viewbox Stretch="Uniform" Grid.Row="8" Grid.Column="10">
-                <Button x:Name="historyMainMenu" Click="historyMainMenu_Click" Background="#202123" BorderBrush="#202123" Foreground="White">→</Button>
+
+            <Viewbox Stretch="Fill" Grid.Row="8" Grid.Column="10">
+                <Button x:Name="historyMainMenu" Click="historyMainMenu_Click" Width="100" HorizontalAlignment="Stretch" Background="#202123" BorderBrush="#202123" FontSize="50" Foreground="White">→</Button>
             </Viewbox>
 
         </Grid>

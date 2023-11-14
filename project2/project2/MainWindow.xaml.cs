@@ -314,7 +314,6 @@ namespace project2
         {
             LoggedIn.Visibility = Visibility.Hidden;
             MainWindowBorder.Visibility = Visibility.Visible;
-            loggedInUsername = null;
         }
 
         private void startClick(object sender, RoutedEventArgs e)
@@ -333,9 +332,9 @@ namespace project2
             }
         }
         private void btnUploadImage_Click(object sender, RoutedEventArgs e)
-{
+        {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Image files |*.jpg;*.jpeg;*.png;*.gif;*.bmp";
+            openFileDialog.Filter = "Image files |*.jpg;*.jpeg;*.gif;*.bmp";
 
             if (openFileDialog.ShowDialog() == true)
             {
