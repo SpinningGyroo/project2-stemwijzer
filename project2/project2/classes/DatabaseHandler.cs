@@ -52,7 +52,7 @@ namespace project2.classes
             catch (Exception e)
             {
                 Console.WriteLine("An error occurred: " + e.Message);
-                return false; // Assuming an error means username doesn't exist (for simplicity)
+                return false; 
             }
             finally
             {
@@ -124,7 +124,7 @@ namespace project2.classes
             }
         }
 
-        public DataTable GetUserInfo(string username)
+        public DataTable GetUserInfo(string username)//
         {
             DataTable result = new DataTable();
             try
@@ -169,7 +169,7 @@ namespace project2.classes
             }
         }
 
-        public DataTable GetParties()
+        public DataTable GetParties() //hier wordt de id, naam, info, url en het partij logo opgehaald, van de tabel "partijen"
         {
             DataTable result = new DataTable();
             try
@@ -277,7 +277,7 @@ namespace project2.classes
 
 
 
-        public int GetUserIdByUsername(string username)
+        public int GetUserIdByUsername(string username)//de id ophalen van de user, uit de tabel "user"
         {
             try
             {

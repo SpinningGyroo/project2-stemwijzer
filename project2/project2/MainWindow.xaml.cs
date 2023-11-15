@@ -22,46 +22,45 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace project2
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+
     public partial class MainWindow : Window
     {
-        private string loggedInUsername;
-        Rectangle ProfileRectangle;
+        
+        private string loggedInUsername; // de private logged in user int, dus dan weet de applicatie wie er is ingelogd 
+        Rectangle ProfileRectangle; // de default profile image, voor een user die nog geen profile image heeft
         public MainWindow()
         {
             InitializeComponent();
-            partycreator();
-            LoggedIn.Visibility = Visibility.Hidden;
-            SignUp.Visibility = Visibility.Hidden;
+            partycreator(); // de partycreator maakt de partijen logo's aan in "gridPartijen"
+            LoggedIn.Visibility = Visibility.Hidden; // de logged in grid hidden
+            SignUp.Visibility = Visibility.Hidden; //sign up grid wordt hidden
 
-            ImageBrush ProfileImage = new ImageBrush();
-            ProfileImage.ImageSource = new BitmapImage(new Uri("images/profileimage.png", UriKind.Relative));
+            ImageBrush ProfileImage = new ImageBrush(); // nieuwe brush met de deafult profile image
+            ProfileImage.ImageSource = new BitmapImage(new Uri("images/profileimage.png", UriKind.Relative)); 
 
-            ProfileRectangle = new Rectangle();
+            ProfileRectangle = new Rectangle(); // een rectangle wordt aan gemaakt met de default profile image als brush
             ProfileRectangle.Margin = new Thickness(4);
-            ProfileRectangle.Fill = ProfileImage; // Make sure ProfileImage is defined in your code
+            ProfileRectangle.Fill = ProfileImage;
             Grid.SetRow(ProfileRectangle, 1);
             Grid.SetColumn(ProfileRectangle, 1);
             Grid.SetColumnSpan(ProfileRectangle, 2);
             Grid.SetRowSpan(ProfileRectangle, 4);
 
-            gridLoggedIn.Children.Add(ProfileRectangle);
+            gridLoggedIn.Children.Add(ProfileRectangle);// de rectangle wordt toegevoegd in de logged in grid "gridLoggedIn"
         }
 
 
-        private void partycreator()
+        private void partycreator() // de partycreator voor de partij logo's
         {
-            DatabaseHandler dbHandler = new DatabaseHandler();
+            DatabaseHandler dbHandler = new DatabaseHandler();// connectie met de database via GetParties, voor de logo's in blob
             DataTable partiesTable = dbHandler.GetParties();
 
-            int row = 1;
+            int row = 1;// hoeveel rows en colums, dit bepaald de positie van de logo's
             int col = 1;
 
-            for (int i = 0; i < partiesTable.Rows.Count - 1; i++)
+            for (int i = 0; i < partiesTable.Rows.Count - 1; i++) // een for loop dat gaat door alle partijen heen
             {
-                DataRow partyRow = partiesTable.Rows[i];
+                DataRow partyRow = partiesTable.Rows[i];// alle ints worden aangemaakt naar string via de databasehandler
                 int partyId = Convert.ToInt32(partyRow["ID"]);
                 byte[] partyLogo = (byte[])partyRow["partij_logo"];
                 string partyName = partyRow["naam"].ToString();
@@ -71,7 +70,7 @@ namespace project2
                 ImageBrush imageBrush = new ImageBrush();
                 BitmapImage bitmapImage = new BitmapImage();
                 bitmapImage.BeginInit();
-                bitmapImage.StreamSource = new MemoryStream(partyLogo);
+                bitmapImage.StreamSource = new MemoryStream(partyLogo);// bitimage stream, Hij streamt dan de image uit de memory als blob
                 bitmapImage.EndInit();
                 imageBrush.ImageSource = bitmapImage;
 
@@ -81,18 +80,18 @@ namespace project2
                 Grid.SetRow(rectangle, row);
                 Grid.SetColumn(rectangle, col);
 
-                rectangle.MouseLeftButtonDown += (sender, e) =>
+                rectangle.MouseLeftButtonDown += (sender, e) => // de mousdown function op de logo's, alles komt uit de database via  GetParties
                 {
                     MessageBoxResult result = MessageBox.Show($"{partyName}, {partyInfo} Wil je door naar de website?", "Partij Info", MessageBoxButton.YesNo);
                     if (result == MessageBoxResult.Yes)
                     {
-                        System.Diagnostics.Process.Start(partyUrl);
+                        System.Diagnostics.Process.Start(partyUrl); // hij start de url voor de website
                     }
                 };
 
-                gridPartijen.Children.Add(rectangle);
+                gridPartijen.Children.Add(rectangle);// alle log's toevegen aan de gridPartijen
 
-                col++;
+                col++; //grid positie updaten
 
                 if (col > 3)
                 {
@@ -101,8 +100,8 @@ namespace project2
                 }
             }
 
-            // Add the final party logo to the bottom middle
-            if (partiesTable.Rows.Count > 0)
+            
+            if (partiesTable.Rows.Count > 0)// we doen alles nog een keer alleen dan voor de final logo, zodat hij netjes onderaan zit
             {
                 DataRow finalPartyRow = partiesTable.Rows[partiesTable.Rows.Count - 1];
                 byte[] finalPartyLogo = (byte[])finalPartyRow["partij_logo"];
@@ -140,46 +139,41 @@ namespace project2
         private void HistoryClick(object sender, RoutedEventArgs e)
         {
 
-            DatabaseHandler dbHandler = new DatabaseHandler();
+            DatabaseHandler dbHandler = new DatabaseHandler();// de user id van de username ophalen uit de database via GetUserIdByUsername
             int userId = dbHandler.GetUserIdByUsername(loggedInUsername);
-            History screen = new History(userId);
+            History screen = new History(userId);// hij opend de history window met de userId int, deze is gecombineerd met GetUserIdByUsername en de private logged in user int
             screen.Show();
         }
 
         private void signupClick(object sender, RoutedEventArgs e)
         {
-            MainWindowBorder.Visibility = Visibility.Hidden;
-            SignUp.Visibility = Visibility.Visible;
+            MainWindowBorder.Visibility = Visibility.Hidden;// de logdin sectie hidden maken, de grid staat in een border, daarom maken we de grid hidden
+            SignUp.Visibility = Visibility.Visible;// nu is de sign up grid visible 
 
         }
 
         private void btnCreateUser_Click(object sender, RoutedEventArgs e)
         {
-            string username = txtUsernameCreate.Text;
-            string password = txtPasswordCreate.Password.ToString();
+            string username = txtUsernameCreate.Text;//username uit de textbox naar string
+            string password = txtPasswordCreate.Password.ToString();// password naar string, we maken van een SecureString een normale string, vanwege .Password.
             string email = txtEmailCreate.Text;
 
-            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(email))
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(email))//als alle boxes leeg zijn
             {
                 System.Windows.MessageBox.Show("Fill all three boxes.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
 
-            if (!IsValidEmail(email))
+            if (!IsValidEmail(email))//als het een geldige email is
             {
                 System.Windows.MessageBox.Show("Use an existing email.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
-
-            // All validations passed, proceed with registration.
             DatabaseHandler dbHandler = new DatabaseHandler();
-           
 
-            // Optionally, you can show a message to indicate successful registration
-
-            if (DatabaseHandler.UsernameExists(username))
+            if (DatabaseHandler.UsernameExists(username))//als de username bestaat en dus UsernameExists waar is
             {
                 System.Windows.MessageBox.Show("Username already exists. Please choose a different username.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 txtUsernameCreate.Text = "";
@@ -187,7 +181,7 @@ namespace project2
                 txtEmailCreate.Text = "";
             }
 
-            if (!DatabaseHandler.UsernameExists(username))
+            if (!DatabaseHandler.UsernameExists(username))// als de username niet bestaat, dus als UsernameExists niet waar is
             {
 
                 dbHandler.RegisterUser(username, password, email);
@@ -203,9 +197,7 @@ namespace project2
 
         private bool IsValidEmail(string email)
         {
-            // Basic email format validation using a regular expression.
-            // You might want to use a more sophisticated validation method in a real application.
-            return System.Text.RegularExpressions.Regex.IsMatch(email, @"^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$");
+            return System.Text.RegularExpressions.Regex.IsMatch(email, @"^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$");//checked voor de juiste characters and letter
         }
 
 
@@ -213,17 +205,17 @@ namespace project2
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
 
-            string username = txtUsername.Text;
-            string password = txtPassword.Password.ToString();
+            string username = txtUsername.Text;//username naar string
+            string password = txtPassword.Password.ToString();//password van SecureString naar normale string
 
-            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))//als de boxes leeg zijn
             {
                 System.Windows.MessageBox.Show("Fill in both username and password.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
             DatabaseHandler dbHandler = new DatabaseHandler();
-            DataTable userInfo = dbHandler.GetUserInfo(username);
+            DataTable userInfo = dbHandler.GetUserInfo(username);//de user info ophalen gecombineerd met username, via GetUserInfo
 
             if (userInfo.Rows.Count == 0)
             {
@@ -304,53 +296,53 @@ namespace project2
 
         }
 
-        private void GoBackClick(object sender, RoutedEventArgs e)
+        private void GoBackClick(object sender, RoutedEventArgs e)//de Sign Up grid hidden en de loggin weer visible maken
         {
             SignUp.Visibility = Visibility.Hidden;
             MainWindowBorder.Visibility = Visibility.Visible;
         }
 
-        private void logoutClick(object sender, RoutedEventArgs e)
+        private void logoutClick(object sender, RoutedEventArgs e)//uitloggen van je user, logged in grid hidden en loggin weer visible
         {
             LoggedIn.Visibility = Visibility.Hidden;
             MainWindowBorder.Visibility = Visibility.Visible;
-            loggedInUsername = null;
+            loggedInUsername = null;// LoggedInUsername is weer null, zodat je de stemWzijer niet weer opnieuw kunt doen als je loggedout bent
         }
 
         private void startClick(object sender, RoutedEventArgs e)
         {
             DatabaseHandler dbHandler = new DatabaseHandler();
 
-            if (!string.IsNullOrEmpty(loggedInUsername))
+            if (!string.IsNullOrEmpty(loggedInUsername))//als LoggedInUsername niet null or empty is
             {
-                int userId = dbHandler.GetUserIdByUsername(loggedInUsername);
+                int userId = dbHandler.GetUserIdByUsername(loggedInUsername);// de user id van de username ophalen uit de database via GetUserIdByUsername
                 Keuze screen = new Keuze(userId);
                 screen.Show();
             }
-            else
+            else//is LoggedInUsername wel null of empty 
             {
                 MessageBox.Show("You need to be logged in.", "Access Denied", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
-        private void btnUploadImage_Click(object sender, RoutedEventArgs e)
+        private void btnUploadImage_Click(object sender, RoutedEventArgs e)//upload de image van je eigen systeem
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Image files |*.jpg;*.jpeg;*.gif;*.bmp";
+            OpenFileDialog openFileDialog = new OpenFileDialog();// maakt een nieuwe OpenFilelog aan
+            openFileDialog.Filter = "Image files |*.jpg;*.jpeg;*.gif;*.bmp";// een filter zodat je alleen maar jpg's, jpeg, gif's en bmp's kan pakken
 
-            if (openFileDialog.ShowDialog() == true)
+            if (openFileDialog.ShowDialog() == true)//als OpenFilelog show waar is
             {
                 string imagePath = openFileDialog.FileName;
 
-                // Convert the image to a byte array
-                byte[] imageData = File.ReadAllBytes(imagePath);
+                
+                byte[] imageData = File.ReadAllBytes(imagePath);//Convert de image naar byte array
 
-                // Update the profile image in the database
+                
                 DatabaseHandler dbHandler = new DatabaseHandler();
-                dbHandler.UpdateProfileImage(loggedInUsername, imageData);
+                dbHandler.UpdateProfileImage(loggedInUsername, imageData);//Update de profile image in the database
 
-                // Optionally, update the profile image in the UI
+
                 ImageBrush newProfileImage = new ImageBrush();
-                newProfileImage.ImageSource = new BitmapImage(new Uri(imagePath));
+                newProfileImage.ImageSource = new BitmapImage(new Uri(imagePath));//imagePath string als profile image brush
                 ProfileRectangle.Fill = newProfileImage;
             }
         }

@@ -17,14 +17,12 @@ using project2.classes;
 using System.IO;
 namespace project2
 {
-        /// <summary>
-        /// Interaction logic for Keuze.xaml
-        /// </summary>
+
         public partial class Keuze : Window
         {
         private DatabaseHandler dbHandler;
-        private int currentStatementId = 1;
-        private int loggedInUserId;
+        private int currentStatementId = 1;//currentStatmentId staat op 1, want de stellingen beginnen bij Id 1 en gaan tot Id 16
+        private int loggedInUserId;//private int voor de logged in user met Id
         private Dictionary<string, int> partyValues = new Dictionary<string, int>();
         private DispatcherTimer timer;
         int timePassed = 0;
@@ -69,7 +67,7 @@ namespace project2
             }
             else
             {
-                if (timePassed >= 90)
+                if (timePassed >= 60)
                 { 
                     timer.Stop();
                     gridKeuze.Visibility = Visibility.Hidden;
@@ -165,8 +163,7 @@ namespace project2
                     string partyName = row["party_name"].ToString();
                     int partyScore = Convert.ToInt32(row["party_score"]);
 
-                    // Use the GetPartyLogoByName method to retrieve partij_logo data
-                    byte[] partyLogoData = dbHandler.GetPartyLogoByName(partyName);
+                    byte[] partyLogoData = dbHandler.GetPartyLogoByName(partyName);// met de GetPartyLogoByName om informatie te krijgen, de naam en partij_logo
 
                     ImageBrush imageBrush = new ImageBrush();
                     if (partyLogoData != null && partyLogoData.Length > 0)
@@ -179,15 +176,15 @@ namespace project2
                     }
                     else
                     {
-                        // Provide a default image source if partij_logo data is not available
-                        imageBrush.ImageSource = new BitmapImage(new Uri("images/default.png", UriKind.Relative));
+                        
+                        imageBrush.ImageSource = new BitmapImage(new Uri("images/default.png", UriKind.Relative));//een default image als er toevallig uit het niet een error komt of er iets mist
                     }
 
                     // Calculate percentage
-                    double percentage = CalculatePercentage(partyScore, 320); // Assuming 320 is the maximum score
+                    double percentage = CalculatePercentage(partyScore, 320); //het percenagte uit rekenen, het maximum is 320, want je start bij 160 en er zijn 16 partijen per 10
 
-                    // Set the image brush and percentage based on the score
-                    switch (i)
+                    
+                    switch (i)//switch voor de partij score in % met de naam en imageBrush als partij_logo voor de top 3
                     {
                         case 0:
                             topScore.Value = percentage;
@@ -207,15 +204,15 @@ namespace project2
                     }
                 }
 
-                // Additional logic if you want to show or process other information
+             
             }
             else
             {
-                MessageBox.Show("No results found.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("No results found.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);//error handeling voor als er informartie mist
             }
         }
 
-        private double CalculatePercentage(int score, int maxScore)
+        private double CalculatePercentage(int score, int maxScore)//de score als percentage berekenen
         {
             return (score / (double)maxScore) * 100.0;
         }
@@ -223,9 +220,9 @@ namespace project2
 
 
 
-        private void backToStart_click(object sender, MouseButtonEventArgs e)
+        private void backToStart_click(object sender, MouseButtonEventArgs e)//back to start voor de timer, het rest de timer en currentStatementId
         {
-            ResetState();
+            ResetState();//cleared de partij values
             currentStatementId = 1;
             timePassed = 0;
             timer.Start();

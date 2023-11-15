@@ -17,9 +17,7 @@ using project2.classes;
 
 namespace project2
 {
-    /// <summary>
-    /// Interaction logic for History.xaml
-    /// </summary>
+
     public partial class History : Window
     {
         private DatabaseHandler dbHandler;
@@ -58,7 +56,7 @@ namespace project2
                         imageBrush.ImageSource = bitmapImage;
 
                         rectangle.Fill = imageBrush;
-                        rectangle.MouseDown += (sender, e) => historySubShow(partyName, 0, partyLogo); // Assuming score is not relevant here
+                        rectangle.MouseDown += (sender, e) => historySubShow(partyName, 0, partyLogo);
                         rectangle.Margin = new Thickness(4);
                         Grid.SetRow(rectangle, row);
                         Grid.SetColumn(rectangle, col);
@@ -74,7 +72,7 @@ namespace project2
 
             Rectangle crossRectangle = new Rectangle();
             crossRectangle.Fill = crossImageBrush;
-            crossRectangle.MouseDown += (sender, e) => historySubShow("Cross", 0, null); // You can adjust the parameters accordingly
+            crossRectangle.MouseDown += (sender, e) => historySubShow("Cross", 0, null);
             Grid.SetRow(crossRectangle, 0);
             Grid.SetColumn(crossRectangle, 4);
             historySub.Children.Add(crossRectangle);
@@ -102,14 +100,13 @@ namespace project2
                 }
                 else
                 {
-                    // Provide a default image source if partij_logo data is not available
+
                     imageBrush.ImageSource = new BitmapImage(new Uri("images/default.png", UriKind.Relative));
                 }
 
-                // Retrieve the score from user_scores table
                 int partyScoreFromUserScores = dbHandler.GetPartyScoreForUser(loggedInUserId, selectedPartyName);
 
-                double percentage = CalculatePercentage(partyScoreFromUserScores, 320); // Assuming 320 is the maximum score
+                double percentage = CalculatePercentage(partyScoreFromUserScores, 320);
 
                 HistoryScore.Value = percentage;
                 HistoryPartyName.Text = $"{selectedPartyName}: {percentage}%";
@@ -117,7 +114,7 @@ namespace project2
             }
         }
 
-        private double CalculatePercentage(int score, int maxScore)
+        private double CalculatePercentage(int score, int maxScore)//weer een calculate feature
         {
             return (score / (double)maxScore) * 100.0;
         }
